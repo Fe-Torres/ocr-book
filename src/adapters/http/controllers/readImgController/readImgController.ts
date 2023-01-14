@@ -8,11 +8,8 @@ export class ReadImgController {
   ) { }
 
   async handle (request: Request, response: Response): Promise<Response> {
-    const img: IReadImg = {
-      img: "uepa"
-    }
     const image = request.file.path
-    console.log(typeof(image))
+    console.log(image)
     try {
       const result = await this.readImgUseCase.execute(image)
       return response.status(200).json({ result })

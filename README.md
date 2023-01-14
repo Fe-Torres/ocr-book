@@ -5,3 +5,4 @@ Depêndencias do container:
 
 Depêndencias do código:
 TER PONTO E VIRGULA NO FINAL DAS SETENÇAS;
+Microsoft Free OCR (20 calls por minutos, 5k por mês)
