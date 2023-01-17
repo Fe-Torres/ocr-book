@@ -5,9 +5,9 @@ export class ReadImg {
   constructor (
     private ocr: IOcr
     ) {}
-  async execute (img) {
+  async execute (image_buffer) {
     try {
-      const response = await this.ocr.readImage(img)
+      const response = await this.ocr.readImage(image_buffer)
       return response
     } catch (error) {
       throw new Error(error)
