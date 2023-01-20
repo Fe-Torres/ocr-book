@@ -15,7 +15,8 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "no-useless-constructor":"off"
+        "no-useless-constructor":"off",
+        "indent": ["error", 2]
     },
    "overrides": [
     {

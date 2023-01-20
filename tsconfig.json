@@ -6,10 +6,10 @@
     "esModuleInterop": true,                  
     "skipLibCheck": true,                     
     "forceConsistentCasingInFileNames": true,  
-    "outDir": "./dist/src",
+    "outDir": "dist/src",
     "sourceMap": true
   },
   "include": [
-    "src/**/*.ts"
+    "server/src/**/*.ts"
   ]
 }
