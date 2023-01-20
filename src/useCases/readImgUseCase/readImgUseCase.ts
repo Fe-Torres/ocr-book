@@ -1,5 +1,4 @@
 import { IOcr } from '../../services/ocr-service/interfaces/ocrInterface'
-import { IReadImg } from './readImgDTO'
 
 export class ReadImg {
   constructor (
@@ -13,4 +12,8 @@ export class ReadImg {
       throw new Error(error)
     }
   }
+}
+
+export function teste_find_dead_code(){
+  console.log("uepas")
 }
