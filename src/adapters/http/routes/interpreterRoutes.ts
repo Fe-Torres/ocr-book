@@ -9,7 +9,6 @@ interpreterRoutes.post('/interpreter', (request, response) => {
 })
 
 interpreterRoutes.post('/read-image',uploads.single('img'), (request, response) => {
-  //return response.status(200).json({ result:"bom" })
   return readImgController.handle(request, response)
 })
 

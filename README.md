@@ -12,3 +12,6 @@ Microsoft Free OCR (20 calls por minutos, 5k por mês)
 Tomar cuidado com comando que podem ser executados nos terminais, pessoais maliciosas podem tentar bagunçar o container.
 Tentar prever alguns erros recorrentes de sintaxes;
 Armazenar as palavras dentro de um array; 
+Entender algumas sintaxes da galera??? Escreva 3 vzs console.log()
+Definir padrões de códigos (ex: console.log(), for, if/ifelse, while) para identificar tudo que se parece com a estrutura;
+Pedir pra galera (10 pessoas) escreverem em um caderno 

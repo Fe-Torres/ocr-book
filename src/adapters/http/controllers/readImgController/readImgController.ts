@@ -1,5 +1,4 @@
 import { Request, Response } from 'express'
-import { IReadImg } from '../../../../useCases/readImgUseCase/readImgDTO'
 import { ReadImg } from '../../../../useCases/readImgUseCase/readImgUseCase'
 import FileReader from 'filereader'
 import path from 'path'
@@ -13,6 +12,7 @@ export class ReadImgController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const image_path = request.file.path
+    console.log(image_path)
     const image_buffer = await fs.promises.readFile(path.join(image_path));
     try {
       const result = await this.readImgUseCase.execute(image_buffer)

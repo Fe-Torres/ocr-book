@@ -1,9 +1,13 @@
 [x] Back para Interpretar a lógica escrita;
 [x] Retornar a resposta para o front;
 [x] Rota para receber a imagem;
-[ ] Implementar a inteligência artificial da microsoft; <--
-[ ] Criar o front-end;
-[ ] Criar o front integrando com o backwendell;
+[x] Implementar a inteligência artificial da microsoft; <--
+[ ] Tratar os erros da aplicação (não exibir o trace);
+[ ] Limpar o Backendwell
+[ ] Fazer o deploy do backend utilizando github com S3 da AWS;;
+[ ] Fazer o deploy do front utilizando github com S3 da AWS;
+[ ] Testar integração;
+[ ] Realizar os ajustes no backend p
 [ ] Preparar a apresentação com os itens que Davi mencionou;
 
 Link dos OCRs
