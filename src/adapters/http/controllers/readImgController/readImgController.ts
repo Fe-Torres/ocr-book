@@ -26,6 +26,7 @@ export class ReadImgController {
 }
 
 function encodeImageFileAsURL(file) {
+  
   var reader = new FileReader();
   reader.onloadend = function() {
     console.log('RESULT', reader.result)

@@ -12,7 +12,9 @@
     "lint:fix": "yarn eslint 'src/**' --fix",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "find-deadcode": "if (yarn ts-prune -e); then echo 'No deadcode found'; else echo 'Deadcode found'; fi"
+
   },
   "repository": {
     "type": "git",
