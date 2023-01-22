@@ -17,10 +17,3 @@ Link dos OCRs
 
 Débitos técnicos
 Storage mais azure function ou um container mesmo?
-
-
-
-
-PAPINHA GAY
-
-papinha gay
