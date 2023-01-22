@@ -2,8 +2,9 @@
 [x] Retornar a resposta para o front;
 [x] Rota para receber a imagem;
 [x] Implementar a inteligência artificial da microsoft; <--
+[x] Limpar o Backendwell
+
 [ ] Tratar os erros da aplicação (não exibir o trace);
-[ ] Limpar o Backendwell
 [ ] Fazer o deploy do backend utilizando github com S3 da AWS;;
 [ ] Fazer o deploy do front utilizando github com S3 da AWS;
 [ ] Testar integração;
@@ -16,3 +17,10 @@ Link dos OCRs
 
 Débitos técnicos
 Storage mais azure function ou um container mesmo?
+
+
+
+
+PAPINHA GAY
+
+papinha gay
