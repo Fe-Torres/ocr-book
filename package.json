@@ -9,10 +9,9 @@
   "scripts": {
     "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/adapters/http/api/server.ts",
     "build": "tsc --build",
-    "lint": "eslint . --ext .ts&.js",
+    "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "prepare": "husky install",
-    "lint-staged": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1",
     "find-deadcode": "if (yarn ts-prune -e); then echo 'No deadcode found'; else echo 'Deadcode found'; fi",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"
