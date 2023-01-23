@@ -7,11 +7,12 @@ export class ReadImgController {
   constructor(private readImgUseCase: ReadImg) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const image_path = request.file.path;
-    console.log(image_path);
-    const image_buffer = await fs.promises.readFile(path.join(image_path));
     try {
-      const result = await this.readImgUseCase.execute(image_buffer);
+      const imagePath = request.file.path;
+      const imageBuffer: Buffer = await fs.promises.readFile(
+        path.join(imagePath)
+      );
+      const result = await this.readImgUseCase.execute(imageBuffer);
       return response.status(200).json({ result });
     } catch (err) {
       return response.status(400).json({

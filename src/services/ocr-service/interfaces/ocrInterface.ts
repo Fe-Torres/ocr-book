@@ -1,3 +1,3 @@
 export interface IOcr {
-  readImage(image_buffer);
+  readImage(imageBuffer: Buffer);
 }

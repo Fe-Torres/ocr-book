@@ -10,7 +10,6 @@ export class TesseractOcr implements IOcr {
     const {
       data: { text }
     } = await worker.recognize(image);
-    console.log(text);
     await worker.terminate();
 
     return text;

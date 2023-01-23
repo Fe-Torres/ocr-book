@@ -4,7 +4,7 @@ import { ApiKeyCredentials } from '@azure/ms-rest-js';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const sleep = require('util').promisify(setTimeout);
 
-export async function computerVision(img) {
+export async function computerVision(imageBuffer: Buffer) {
   const key = process.env.OCR_KEY;
   const endpoint = process.env.OCR_ENDPOINT;
 
@@ -13,9 +13,12 @@ export async function computerVision(img) {
     endpoint
   );
 
-  const printedResult = await readTextfromImg(computerVisionClient, img);
-  const text_parsed = parserText(printedResult);
-  return text_parsed;
+  const printedResult = await readTextfromImg(
+    computerVisionClient,
+    imageBuffer
+  );
+  const textParsed = parserText(printedResult);
+  return textParsed;
 }
 
 async function readTextfromImg(client, url) {
@@ -23,7 +26,6 @@ async function readTextfromImg(client, url) {
   const operation = result.operationLocation.split('/').slice(-1)[0];
 
   while (result.status !== 'succeeded') {
-    console.log(result.status);
     await sleep(1000);
     result = await client.getReadResult(operation);
   }
