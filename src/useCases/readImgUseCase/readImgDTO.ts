@@ -1,3 +1,3 @@
 export interface IReadImg {
-    img: string
-  }
+  img: string;
+}
