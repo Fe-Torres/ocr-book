@@ -11,7 +11,3 @@ export class ReadImg {
     }
   }
 }
-
-export function teste_find_dead_code() {
-  console.log('uepas');
-}
