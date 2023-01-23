@@ -10,6 +10,7 @@
 [ ] Fazer o deploy do front utilizando github com S3 da AWS;
 [ ] Testar integração;
 [ ] Preparar a apresentação com os itens que Davi mencionou;
+[ ] Não deixar executar comandos no container usando o javascript no caderno.
 
 Link dos OCRs
 
