@@ -13,7 +13,7 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "find-deadcode": "if (yarn ts-prune -e); then echo 'No deadcode found'; else echo 'Deadcode found'; fi",
+    "find-deadcode": "if (npx ts-prune -e); then echo 'No deadcode found'; else echo 'Deadcode found'; fi",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"
   },
   "repository": {
