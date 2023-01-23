@@ -3,7 +3,7 @@ import { executeFile } from './functions/executeFile'
 import * as fs from 'fs'
 
 export class InterpreterText {
-  async execute (interpreterData: IInterpreter) {
+  async execute(interpreterData: IInterpreter) {
     try {
       const fileName = `${Math.random().toString(16).slice(2)}.js`
       await fs.writeFileSync(fileName, interpreterData.text)

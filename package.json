@@ -9,12 +9,12 @@
   "scripts": {
     "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/adapters/http/api/server.ts",
     "build": "tsc --build",
-    "lint:fix": "yarn eslint 'src/**' --fix",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1",
     "find-deadcode": "if (yarn ts-prune -e); then echo 'No deadcode found'; else echo 'Deadcode found'; fi"
-
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,9 @@
   "devDependencies": {
     "@types/multer": "^1.4.7",
     "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "eslint": "^8.32.0",
     "husky": "^8.0.3",
     "jest": "^29.3.1",
     "lint-staged": "^13.1.0",

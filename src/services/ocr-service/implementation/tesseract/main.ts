@@ -1,5 +1,4 @@
 import { createWorker } from 'tesseract.js'
-import { IReadImg } from '../../../../useCases/readImgUseCase/readImgDTO';
 import { IOcr } from '../../interfaces/ocrInterface'
 
 export class TesseractOcr implements IOcr {

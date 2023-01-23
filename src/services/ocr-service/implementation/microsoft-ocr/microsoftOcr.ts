@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import { ComputerVisionClient } from '@azure/cognitiveservices-computervision'
 import { ApiKeyCredentials } from '@azure/ms-rest-js'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const sleep = require('util').promisify(setTimeout);
 
 export async function computerVision(img) {
@@ -18,7 +19,7 @@ export async function computerVision(img) {
 
 async function readTextfromImg(client, url) {
   let result = await client.readInStream(url);
-  let operation = result.operationLocation.split('/').slice(-1)[0];
+  const operation = result.operationLocation.split('/').slice(-1)[0];
 
   while (result.status !== "succeeded") {
     console.log(result.status)

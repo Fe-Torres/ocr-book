@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import { ReadImg } from '../../../../useCases/readImgUseCase/readImgUseCase'
-import FileReader from 'filereader'
 import path from 'path'
 import * as fs from 'fs'
 
