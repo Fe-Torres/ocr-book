@@ -1,8 +1,8 @@
-import Home from './pages/home'
+import Read from './pages/read'
 
 function App () {
   return (
-    <Home />
+    <Read />
   )
 }
 

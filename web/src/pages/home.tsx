@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Book from '../assets/book.png'
 import { Button } from '../components/button'
 import { Input } from '../components/input'
 import { TitleWrapper } from '../components/title'
@@ -14,7 +15,7 @@ export default function Home () {
           <div className="flex justify-center">
             <img
               className="w-2/6 max-w-xs"
-              src="https://toppng.com/public/uploads/thumbnail/experience-the-discussion-online-library-book-logo-11562996058ip1or4eqvs.png"
+              src={Book}
             />
           </div>
           <TitleWrapper>
