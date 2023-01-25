@@ -41,11 +41,11 @@ function parserText(readResults) {
       for (const line of result.lines) {
         const phrase = line.words.map((w) => w.text).join(' ');
         text_result = text_result + ' ' + phrase;
-        console.log(phrase);
       }
     } else {
       throw new Error('No recognized text.');
     }
   }
+  console.log(text_result);
   return text_result;
 }

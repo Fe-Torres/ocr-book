@@ -10,6 +10,7 @@
 [ ] Fazer o deploy do front utilizando github com S3 da AWS;
 [ ] Testar integração;
 [ ] Preparar a apresentação com os itens que Davi mencionou;
+[ ] Cortar a imagem tirada com o Cell - https://levelup.gitconnected.com/image-crop-using-react-js-37e10208c572
 [ ] Não deixar executar comandos no container usando o javascript no caderno.
 
 Link dos OCRs

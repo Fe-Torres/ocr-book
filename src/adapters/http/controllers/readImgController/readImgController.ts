@@ -13,6 +13,7 @@ export class ReadImgController {
         path.join(imagePath)
       );
       const result = await this.readImgUseCase.execute(imageBuffer);
+
       return response.status(200).json({ result });
     } catch (err) {
       return response.status(400).json({
