@@ -8,12 +8,8 @@ interpreterRoutes.post('/interpreter', (request, response) => {
   return interpreterTextController.handle(request, response);
 });
 
-interpreterRoutes.post(
-  '/read-image',
-  uploads.single('img'),
-  (request, response) => {
-    return readImgController.handle(request, response);
-  }
-);
+interpreterRoutes.post('/read-image', (request, response) => {
+  return readImgController.handle(request, response);
+});
 
 export { interpreterRoutes };

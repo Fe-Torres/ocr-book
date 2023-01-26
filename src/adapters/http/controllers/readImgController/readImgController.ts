@@ -8,18 +8,14 @@ export class ReadImgController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     try {
+      // const imagePath = request.file.path;
+      // const imageBuffer: Buffer = await fs.promises.readFile(
+      //   path.join(imagePath)
+      // );
       const { imgBase64 } = request.body;
-      const imagePath = request.file.path;
-      let result: string;
+      const imageBuffer = Buffer.from(imgBase64, 'base64');
 
-      if (imgBase64) {
-        result = await this.readImgUseCase.execute(imgBase64);
-      } else {
-        const imageBuffer: Buffer = await fs.promises.readFile(
-          path.join(imagePath)
-        );
-        result = await this.readImgUseCase.execute(imageBuffer);
-      }
+      const result = await this.readImgUseCase.execute(imageBuffer);
 
       return response.status(200).json({ result });
     } catch (err) {
