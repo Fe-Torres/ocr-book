@@ -1,3 +1,3 @@
 export interface IInterpreter {
-    text: string
-  }
+  text: string;
+}
