@@ -4,8 +4,10 @@
 [x] Implementar a inteligência artificial da microsoft; <--
 [x] Limpar o Backendwell
 [x] Implementar o eslint, prettier, husky e pre-commit;
-[ ] Realizar os ajustes no backend para aceitar o Perfil de letra;
 [ ] Tratar os erros da aplicação (não exibir o trace);
+[ ] Adicionar tratamento do tipo de imagem;
+[ ] Realizar os ajustes no backend para aceitar o Perfil de letra;
+
 [ ] Fazer o deploy do backend utilizando github com S3 da AWS;;
 [ ] Fazer o deploy do front utilizando github com S3 da AWS;
 [ ] Testar integração;

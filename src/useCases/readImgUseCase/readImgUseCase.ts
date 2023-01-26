@@ -2,7 +2,7 @@ import { IOcr } from '../../services/ocr-service/interfaces/ocrInterface';
 
 export class ReadImg {
   constructor(private ocr: IOcr) {}
-  async execute(imageBuffer: Buffer) {
+  async execute(imageBuffer: Buffer): Promise<string> {
     try {
       const response = await this.ocr.readImage(imageBuffer);
       return response;
