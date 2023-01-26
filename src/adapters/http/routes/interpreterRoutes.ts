@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { interpreterTextController, readImgController } from '../controllers';
-import uploads from './upload';
 
 const interpreterRoutes = Router();
 
