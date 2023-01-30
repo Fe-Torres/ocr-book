@@ -1,10 +1,9 @@
-import { IOcr } from '../../interfaces/ocrInterface'
+import { IOcr } from '../../interfaces/ocrInterface';
+import { computerVision } from './microsoftOcr';
 
-import {computerVision} from './index'
 export class MicrosoftOcr implements IOcr {
-
-    async readImage(image) {
-       const result = await computerVision(image);
-       return result
-    }
+  async readImage(imageBuffer: Buffer) {
+    const result = await computerVision(imageBuffer);
+    return result;
+  }
 }

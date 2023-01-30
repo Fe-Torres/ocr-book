@@ -1,20 +1,22 @@
 import { Request, Response } from 'express'
-import { IReadImg } from '../../../../useCases/readImgUseCase/readImgDTO'
 import { ReadImg } from '../../../../useCases/readImgUseCase/readImgUseCase'
-import FileReader from 'filereader'
 import path from 'path'
 import * as fs from 'fs'
 
 export class ReadImgController {
-  constructor (
-    private readImgUseCase: ReadImg
-  ) { }
+  constructor (private readImgUseCase: ReadImg) {}
 
   async handle (request: Request, response: Response): Promise<Response> {
-    const image_path = request.file.path
-    const image_buffer = await fs.promises.readFile(path.join(image_path))
     try {
-      const result = await this.readImgUseCase.execute(image_buffer)
+      // const imagePath = request.file.path;
+      // const imageBuffer: Buffer = await fs.promises.readFile(
+      //   path.join(imagePath)
+      // );
+      const { imgBase64 } = request.body
+      const imageBuffer = Buffer.from(imgBase64, 'base64')
+
+      const result = await this.readImgUseCase.execute(imageBuffer)
+
       return response.status(200).json({ result })
     } catch (err) {
       return response.status(400).json({
@@ -22,12 +24,4 @@ export class ReadImgController {
       })
     }
   }
-}
-
-function encodeImageFileAsURL (file) {
-  const reader = new FileReader()
-  reader.onloadend = function () {
-    console.log('RESULT', reader.result)
-  }
-  reader.readAsDataURL(file)
 }
