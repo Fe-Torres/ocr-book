@@ -13,7 +13,9 @@ export class ReadImgController {
       //   path.join(imagePath)
       // );
       const { imgBase64 } = request.body;
-      const imageBuffer = Buffer.from(imgBase64, 'base64');
+      const imgBase64Array = imgBase64.split('base64,');
+      const base64Parsed = imgBase64Array[1];
+      const imageBuffer = Buffer.from(base64Parsed, 'base64');
 
       const result = await this.readImgUseCase.execute(imageBuffer);
 
