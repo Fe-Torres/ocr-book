@@ -1,18 +1,30 @@
 import { DragDrop } from '../components/drag-drop'
 import { Logo } from '../components/logo'
-import { useState } from 'react'
 import { ButtonFile } from '../components/button-file'
 import { ImagePreview } from '../components/image-preview'
+import { useRead } from './useRead'
+import { CodeResult } from '../components/code-result'
 
 export default function Read () {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const { readImage, imageResult, selectedFile, setSelectedFile } = useRead()
 
   const renderDragAndDrop = () => {
     if (screen.width > 500) {
       return (
-        <DragDrop selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
+        <>
+          <DragDrop selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
+          <div className="max-w-md flex items-center">
+            <ButtonFile selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
+          </div>
+        </>
       )
     }
+
+    return (
+      <div className="max-w-md flex items-center">
+        <ButtonFile selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
+      </div>
+    )
   }
 
   return (
@@ -23,21 +35,8 @@ export default function Read () {
         </div>
       </header>
       <section className="w-full flex items-center flex-col gap-4 mt-12">
-        {selectedFile
-          ? (
-            <>
-              <ImagePreview selectedFile={selectedFile} />
-            </>
-          )
-          : (
-            <>
-              {renderDragAndDrop()}
-              <div className="max-w-md flex items-center">
-                <ButtonFile selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
-              </div>
-
-            </>
-          )}
+        {selectedFile ? <ImagePreview selectedFile={selectedFile} setSelectedFile={setSelectedFile} readImage={readImage} /> : renderDragAndDrop()}
+        {imageResult ? <CodeResult code={imageResult} /> : null}
       </section>
     </div>
   )

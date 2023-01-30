@@ -10,6 +10,6 @@
     "sourceMap": true
   },
   "include": [
-    "server/src/**/*.ts"
+    "src/**/*.ts"
   ]
 }

@@ -1,7 +1,5 @@
 import { Request, Response } from 'express'
 import { ReadImg } from '../../../../useCases/readImgUseCase/readImgUseCase'
-import path from 'path'
-import * as fs from 'fs'
 
 export class ReadImgController {
   constructor (private readImgUseCase: ReadImg) {}
@@ -20,7 +18,7 @@ export class ReadImgController {
       return response.status(200).json({ result })
     } catch (err) {
       return response.status(400).json({
-        message: err.message || 'Unexpected error.'
+        message: err || 'Unexpected error.'
       })
     }
   }

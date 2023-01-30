@@ -1,15 +1,14 @@
-import { useEffect } from 'react'
-import { useRead } from '../pages/useRead'
+import React, { useEffect } from 'react'
 import { Button } from './button'
 import { TitleWrapper } from './title'
 
 type ImagePreviewProps = {
-    selectedFile: File | null
+  selectedFile: File | null
+  setSelectedFile: React.Dispatch<React.SetStateAction<File | null>>
+  readImage: (base64: string) => void
 }
 
-export const ImagePreview = ({ selectedFile }: ImagePreviewProps) => {
-  const { readImage } = useRead()
-
+export const ImagePreview = ({ selectedFile, setSelectedFile, readImage }: ImagePreviewProps) => {
   let base64: string
 
   useEffect(() => {
@@ -19,6 +18,7 @@ export const ImagePreview = ({ selectedFile }: ImagePreviewProps) => {
       reader.readAsDataURL(selectedFile)
       reader.addEventListener('load', (e) => {
         imageRef.src = e.target?.result as string
+        base64 = e.target?.result as string
       })
     }
   }, [])
@@ -30,11 +30,11 @@ export const ImagePreview = ({ selectedFile }: ImagePreviewProps) => {
         <img id="previewImg" />
       </div>
       <section className="w-1/2 p-4 flex flex-row justify-between">
-        <div className="w-1/3">
+        <div>
           <Button onClick={() => readImage(base64)}>Yes</Button>
         </div>
-        <div className="w-1/3">
-          <Button onClick={() => console.log('teste')}>No</Button>
+        <div>
+          <Button onClick={() => setSelectedFile(null)}>No</Button>
         </div>
       </section>
     </div>
