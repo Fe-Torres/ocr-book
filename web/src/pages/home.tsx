@@ -1,12 +1,24 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Book from '../assets/book.png'
 import { Button } from '../components/button'
 import { Input } from '../components/input'
 import { TitleWrapper } from '../components/title'
 
 export default function Home () {
+  const navigate = useNavigate()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const mockedEmail = 'usuario@dataside.com.br'
+  const mockedPassword = 'usuario1234'
+
+  const handleLogin = () => {
+    if (email === mockedEmail && password === mockedPassword) {
+      navigate('/read')
+    }
+  }
 
   return (
     <div className="h-full p-8">
@@ -28,7 +40,7 @@ export default function Home () {
         </form>
         <section className='w-full max-w-xs mt-8 flex flex-row justify-between items-center'>
           <div className='w-1/4'>
-            <Button onClick={() => console.log('teste')}>Login</Button>
+            <Button onClick={() => handleLogin()}>Login</Button>
           </div>
           <a href="/teste" className='underline'>
           How to use

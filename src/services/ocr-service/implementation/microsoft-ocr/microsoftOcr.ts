@@ -17,7 +17,9 @@ export async function computerVision (imageBuffer: Buffer) {
     computerVisionClient,
     imageBuffer
   )
+
   const textParsed = parserText(printedResult)
+
   return textParsed
 }
 
@@ -29,7 +31,6 @@ async function readTextfromImg (client, url) {
     await sleep(1000)
     result = await client.getReadResult(operation)
   }
-  console.log(result.analyzeResult.readResults)
 
   return result.analyzeResult.readResults
 }
@@ -47,6 +48,6 @@ function parserText (readResults) {
       throw new Error('No recognized text.')
     }
   }
-  console.log(text_result)
+
   return text_result
 }

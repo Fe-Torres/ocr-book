@@ -4,8 +4,10 @@ import { useState } from 'react'
 export function useRead () {
   const [imageResult, setImageResult] = useState<string | null>(null)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const [isReading, setIsReading] = useState(false)
 
   async function readImage (base64: string) {
+    setIsReading(true)
     try {
       const response = await axios.post('http://localhost:3333/read-image', {
         imgBase64: base64
@@ -15,11 +17,14 @@ export function useRead () {
         }
       })
 
-      const result = await interpretateImage(response.data)
+      const result = await interpretateImage(response.data.result)
 
-      setImageResult(result)
-    } catch (error) {
+      setImageResult('he')
+    } catch (error: any) {
       console.log(error)
+    } finally {
+      setIsReading(false)
+      setSelectedFile(null)
     }
   }
 
@@ -36,7 +41,7 @@ export function useRead () {
       setSelectedFile(null)
       return response.data
     } catch (error) {
-      return null
+      return 'Syntax error, cannot read the provided image'
     }
   }
 
@@ -44,6 +49,7 @@ export function useRead () {
     readImage,
     imageResult,
     selectedFile,
-    setSelectedFile
+    setSelectedFile,
+    isReading
   }
 }

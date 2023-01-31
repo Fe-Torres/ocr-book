@@ -1,8 +1,9 @@
-import Read from './pages/read'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './pages/routes'
 
 function App () {
   return (
-    <Read />
+    <RouterProvider router={router} />
   )
 }
 

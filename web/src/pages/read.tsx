@@ -4,9 +4,10 @@ import { ButtonFile } from '../components/button-file'
 import { ImagePreview } from '../components/image-preview'
 import { useRead } from './useRead'
 import { CodeResult } from '../components/code-result'
+import { Loading } from '../components/loading'
 
 export default function Read () {
-  const { readImage, imageResult, selectedFile, setSelectedFile } = useRead()
+  const { readImage, imageResult, selectedFile, setSelectedFile, isReading } = useRead()
 
   const renderDragAndDrop = () => {
     if (screen.width > 500) {
@@ -34,10 +35,18 @@ export default function Read () {
           <Logo />
         </div>
       </header>
-      <section className="w-full flex items-center flex-col gap-4 mt-12">
-        {selectedFile ? <ImagePreview selectedFile={selectedFile} setSelectedFile={setSelectedFile} readImage={readImage} /> : renderDragAndDrop()}
-        {imageResult ? <CodeResult code={imageResult} /> : null}
-      </section>
+      {isReading
+        ? (
+          <div className="mt-36">
+            <Loading />
+          </div>
+        )
+        : (
+          <section className="w-full flex items-center flex-col gap-4 mt-12">
+            {selectedFile ? <ImagePreview selectedFile={selectedFile} setSelectedFile={setSelectedFile} readImage={readImage} /> : renderDragAndDrop()}
+            {imageResult ? <CodeResult code={imageResult} /> : null}
+          </section>
+        )}
     </div>
   )
 }
