@@ -5,7 +5,9 @@
 [x] Limpar o Backendwell
 [x] Implementar o eslint, prettier, husky e pre-commit;
 [x] Tratar os erros da aplicação (não exibir o trace da máquina);
-[ ] Realizar os testes com 5 pessoas diferentes e implementar regex para tratar possíveis erros;
+[x] Juntar o frontendiz com o back na develop;
+[ ] Definir a estrutura do teste para passar para a galera;
+[ ] Realizar os testes com 5 pessoas diferentes e implementar regex para tratar possíveis erros em comum;
 
 [ ] Fazer o deploy do backend utilizando github com S3 da AWS ou azure;
 [ ] Fazer o deploy do front utilizando github com S3 da AWS ou azure;

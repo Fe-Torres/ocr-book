@@ -14,7 +14,7 @@ export class InterpreterText {
       const response = await executeFile(fileName);
       return response;
     } catch (error) {
-      throw new Error(error);
+      throw new Error(error.message);
     }
   }
 }
