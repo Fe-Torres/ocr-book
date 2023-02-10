@@ -4,16 +4,16 @@
 [x] Implementar a inteligência artificial da microsoft; <--
 [x] Limpar o Backendwell
 [x] Implementar o eslint, prettier, husky e pre-commit;
-[ ] Tratar os erros da aplicação (não exibir o trace);
-[ ] Adicionar tratamento do tipo de imagem;
-[ ] Realizar os ajustes no backend para aceitar o Perfil de letra;
+[x] Tratar os erros da aplicação (não exibir o trace da máquina);
+[ ] Realizar os testes com 5 pessoas diferentes e implementar regex para tratar possíveis erros;
 
-[ ] Fazer o deploy do backend utilizando github com S3 da AWS;;
-[ ] Fazer o deploy do front utilizando github com S3 da AWS;
+[ ] Fazer o deploy do backend utilizando github com S3 da AWS ou azure;
+[ ] Fazer o deploy do front utilizando github com S3 da AWS ou azure;
 [ ] Testar integração;
 [ ] Preparar a apresentação com os itens que Davi mencionou;
 [ ] Cortar a imagem tirada com o Cell - https://levelup.gitconnected.com/image-crop-using-react-js-37e10208c572
 [ ] Não deixar executar comandos no container usando o javascript no caderno.
+[ ] Melhorar a qualidade da imagem
 
 Link dos OCRs
 
