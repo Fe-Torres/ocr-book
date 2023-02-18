@@ -20,7 +20,7 @@ export class ReadImgController {
       return response.status(200).json({ result });
     } catch (err) {
       return response.status(400).json({
-        message: err || 'Unexpected error.'
+        message: err.message || 'Unexpected error.'
       });
     }
   }

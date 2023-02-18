@@ -1,8 +1,9 @@
 export class MapperText {
   constructor(private text: string) {}
   executeMapper(): string {
-    const text = this.text;
-    const result = this.mapperConsole(text);
+    let result = this.mapperConsole(this.text);
+    result = this.mapperUpperCaseWords(result);
+
     return result;
   }
   mapperConsole(text: string): string {
@@ -12,6 +13,11 @@ export class MapperText {
     let result = text.replace(rgx_replace, 'console.');
     result = result.replace(rgx_log, 'log');
     result = result.replace(/end| end /gi, '} ');
+    return result;
+  }
+  mapperUpperCaseWords(text: string): string {
+    const rgx_replace = /var /gi;
+    let result = text.replace(rgx_replace, 'var ');
     return result;
   }
 }

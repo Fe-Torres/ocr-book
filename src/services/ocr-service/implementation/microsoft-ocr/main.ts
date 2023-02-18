@@ -7,7 +7,7 @@ export class MicrosoftOcr implements IOcr {
       const result = await computerVision(imageBuffer);
       return result;
     } catch (error) {
-      throw new Error(error.message);
+      throw new Error(error.body.error.message);
     }
   }
 }
