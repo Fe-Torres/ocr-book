@@ -5,6 +5,7 @@ export function useRead() {
   const [imageResult, setImageResult] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isReading, setIsReading] = useState(false);
+  const [codeResultOpen, setCodeResultOpen] = useState(false);
 
   async function readImage(base64: string) {
     setIsReading(true);
@@ -23,6 +24,7 @@ export function useRead() {
 
       const data = await interpretateImage(response.data.result);
       setImageResult(data);
+      setCodeResultOpen(true);
     } catch (error: any) {
       console.log(error);
     } finally {
@@ -57,6 +59,8 @@ export function useRead() {
     imageResult,
     selectedFile,
     setSelectedFile,
+    codeResultOpen,
+    setCodeResultOpen,
     isReading
   };
 }
