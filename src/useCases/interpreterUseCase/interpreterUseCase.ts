@@ -11,7 +11,7 @@ export class InterpreterText {
       const mapper = new MapperText(text);
       const result_mapped = mapper.executeMapper();
       console.log(result_mapped);
-      await fs.writeFileSync(fileName, result_mapped);
+      fs.writeFileSync(fileName, result_mapped);
       const response = await executeFile(fileName);
 
       return response;
