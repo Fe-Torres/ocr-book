@@ -6,8 +6,10 @@
 [x] Implementar o eslint, prettier, husky e pre-commit;
 [x] Tratar os erros da aplicação (não exibir o trace da máquina);
 [x] Juntar o frontendiz com o back na develop;
-[ ] Definir a estrutura do teste para passar para a galera;
-[ ] Realizar os testes com 5 pessoas diferentes e implementar regex para tratar possíveis erros em comum;
+[x] Definir a estrutura do teste para passar para a galera;
+Backend OK!
+[x] Montar a apresentação do trabalho e apresentar para os caras na sexta!
+[ ] Corrigir fluxos no frontend;
 
 [ ] Fazer o deploy do backend utilizando github com S3 da AWS ou azure;
 [ ] Fazer o deploy do front utilizando github com S3 da AWS ou azure;
