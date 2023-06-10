@@ -36,7 +36,7 @@ export function useRead() {
   async function interpretateImage(code: string): Promise<string | null> {
     try {
       const response = await axios.post(
-        'http://localhost:3333/interpreter',
+        'http://localhost:3333/run-code',
         {
           text: code
         },
