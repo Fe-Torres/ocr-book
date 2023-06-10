@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { ComputerVisionClient } from '@azure/cognitiveservices-computervision';
 import { ApiKeyCredentials } from '@azure/ms-rest-js';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// Alterar para um
 const sleep = require('util').promisify(setTimeout);
 
 export async function computerVision(imageBuffer: Buffer) {

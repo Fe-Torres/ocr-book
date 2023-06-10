@@ -1,4 +1,4 @@
-import { IOcr } from '../../services/ocr-service/interfaces/ocrInterface';
+import { IOcr } from '../../infra/ocr/interfaces/ocrInterface';
 
 export class ReadImg {
   constructor(private ocr: IOcr) {}

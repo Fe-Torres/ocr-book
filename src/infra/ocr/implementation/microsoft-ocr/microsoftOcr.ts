@@ -1,5 +1,5 @@
 import { IOcr } from '../../interfaces/ocrInterface';
-import { computerVision } from './microsoftOcr';
+import { computerVision } from './helpers/computerVision';
 
 export class MicrosoftOcr implements IOcr {
   async readImage(imageBuffer: Buffer) {

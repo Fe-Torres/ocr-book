@@ -8,15 +8,18 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "rules": {
     "no-useless-constructor": "off",
-    "indent": ["error", 2],
     "no-undef": 0
   },
   "overrides": [
     {
-      "files": ["*.spec.ts"],
+      "files": [
+        "*.spec.ts"
+      ],
       "rules": {
         "no-undef": 0
       }

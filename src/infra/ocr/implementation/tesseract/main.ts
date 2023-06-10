@@ -2,7 +2,7 @@ import { createWorker } from 'tesseract.js';
 import { IOcr } from '../../interfaces/ocrInterface';
 
 export class TesseractOcr implements IOcr {
-  async readImage(image) {
+  async readImage(image: Buffer) {
     const worker = await createWorker();
 
     await worker.loadLanguage('eng');

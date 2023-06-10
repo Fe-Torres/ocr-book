@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { interpreterRoutes } from '../routes/interpreterRoutes';
+import { interpreterRoutes } from './routes/interpreterRoutes';
 
 export class App {
   public server: express.Application;
