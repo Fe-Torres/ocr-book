@@ -2,12 +2,12 @@
   "name": "ocr-js",
   "version": "1.0.0",
   "description": "Depêndencias do container: 1. pip 2. pip install js-beautify 3. Ser uma máquina linux;",
-  "main": "src/main/index.ts",
+  "main": "src/main/main.ts",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/main/server.ts",
+    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/main/main.ts",
     "build": "tsc --build",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",

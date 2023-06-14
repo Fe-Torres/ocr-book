@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { ICodeText } from '../../../../model/interfaces/codeTextDTO';
-import { RunCodeTextUseCase } from '../../../../useCases/RunCodeTextUseCase/RunCodeTextUseCase';
+import { RunCodeTextUseCase } from '../../../../useCases/RunCodeTextUseCase/runCodeTextUseCase';
 
 export class RunCodeTextController {
   // trocar por uma interface esse UseCase
-  constructor(private interpreterTextUsecase: RunCodeTextUseCase) {}
+  constructor(private interpreterTextUsecase: RunCodeTextUseCase) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
     const codeText: ICodeText = request.body;
