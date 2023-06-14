@@ -4,7 +4,7 @@ import { RunCodeTextUseCase } from '../../../../useCases/RunCodeTextUseCase/runC
 
 export class RunCodeTextController {
   // trocar por uma interface esse UseCase
-  constructor(private interpreterTextUsecase: RunCodeTextUseCase) { }
+  constructor(private interpreterTextUsecase: RunCodeTextUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
     const codeText: ICodeText = request.body;

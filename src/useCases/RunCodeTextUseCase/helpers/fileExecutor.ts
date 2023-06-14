@@ -22,7 +22,9 @@ export class FileExecutor {
     }
   }
 
-  private async executeCommand(command: string): Promise<{ stdout: string; stderr: string }> {
+  private async executeCommand(
+    command: string
+  ): Promise<{ stdout: string; stderr: string }> {
     try {
       const { stdout, stderr } = await asyncExec(command);
       return { stdout, stderr };
