@@ -1,8 +1,7 @@
 import 'dotenv/config';
 import { ComputerVisionClient } from '@azure/cognitiveservices-computervision';
 import { ApiKeyCredentials } from '@azure/ms-rest-js';
-// Alterar para um
-const sleep = require('util').promisify(setTimeout);
+
 
 export async function computerVision(imageBuffer: Buffer) {
   const key = process.env.OCR_KEY;
@@ -28,7 +27,7 @@ async function readTextfromImg(client, url) {
   const operation = result.operationLocation.split('/').slice(-1)[0];
 
   while (result.status !== 'succeeded') {
-    await sleep(1000);
+    await new Promise(resolve => setTimeout(resolve, 1000));
     result = await client.getReadResult(operation);
   }
 
