@@ -1,22 +1,35 @@
 import { FileExecutor } from './helpers/fileExecutor';
-import { promises as fsPromises } from 'fs';
 import { ICodeText } from '../../model/interfaces/codeTextDTO';
 import { MapperText } from './helpers/mapperText';
-
-const { writeFile } = fsPromises;
+import { CodeTextModel } from '../../model/CodeTextModel';
+import { CodeFixer } from './helpers/codeFixer';
 
 export class RunCodeTextUseCase {
+  private resultMapped: string;
+
   async execute(codeTextData: ICodeText): Promise<string> {
     try {
       const text = codeTextData.text;
-      const fileName = `${Math.random().toString(16).slice(2)}.js`;
-      const resultMapped = MapperText.executeMapper(text);
-      await writeFile(fileName, resultMapped);
-
-      const fileExecutor = new FileExecutor();
-      return await fileExecutor.executeFile(fileName);
+      this.resultMapped = MapperText.executeMapper(text);
+      const result = await this.createAndExecuteFile();
+      return result;
     } catch (error) {
-      throw error;
+      return this.retryRunCode(error);
     }
+  }
+
+  private async createAndExecuteFile(): Promise<string> {
+    const fileName = `${Math.random().toString(16).slice(2)}.js`;
+    const codeTextModel = new CodeTextModel(this.resultMapped);
+    await codeTextModel.createFile(fileName);
+
+    const fileExecutor = new FileExecutor();
+    return fileExecutor.executeFile(fileName);
+  }
+
+  private async retryRunCode(error: string): Promise<string> {
+    const codeFixer = new CodeFixer(error, this.resultMapped);
+    this.resultMapped = await codeFixer.fixCode();
+    return this.createAndExecuteFile();
   }
 }

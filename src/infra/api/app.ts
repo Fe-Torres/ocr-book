@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { interpreterRoutes } from './routes/interpreterRoutes';
+import { routes } from './routes/routes';
 
 export class App {
   public server: express.Application;
@@ -18,6 +18,6 @@ export class App {
 
   private router() {
     this.server.use(cors());
-    this.server.use(interpreterRoutes);
+    this.server.use(routes);
   }
 }

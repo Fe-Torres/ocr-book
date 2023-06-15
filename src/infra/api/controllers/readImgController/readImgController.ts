@@ -1,17 +1,13 @@
 import { Request, Response } from 'express';
-import { ReadImg } from '../../../../useCases/readImgUseCase/readImgUseCase';
+import { ReadImgUseCase } from '../../../../useCases/readImgUseCase/readImgUseCase';
 
 export class ReadImgController {
-  constructor(private readImgUseCase: ReadImg) {}
+  constructor(private readImgUseCase: ReadImgUseCase) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
     try {
       const { imgBase64 } = request.body;
-      const imgBase64Array = imgBase64.split('base64,');
-      const base64Parsed = imgBase64Array[1];
-      const imageBuffer = Buffer.from(base64Parsed, 'base64');
-
-      const result = await this.readImgUseCase.execute(imageBuffer);
+      const result = await this.readImgUseCase.execute(imgBase64);
 
       return response.status(200).json({ result });
     } catch (err) {

@@ -1,10 +1,18 @@
 import { IOcr } from '../../infra/ocr/interfaces/ocrInterface';
+import { ImgModel } from '../../model/ImgModel';
 
-export class ReadImg {
-  constructor(private ocr: IOcr) {}
+export class ReadImgUseCase {
+  constructor(private ocr: IOcr) { }
 
-  async execute(imageBuffer: Buffer): Promise<string> {
-    const text = await this.ocr.readImage(imageBuffer);
+  async execute(imageBase64: string): Promise<string> {
+
+    const imgModel = new ImgModel(imageBase64);
+
+    if (!imgModel.isValidImageFormat()) {
+      throw new Error("Invalid image format.");
+    }
+
+    const text = await this.ocr.readImage(imgModel.getImageBuffer());
     return text;
   }
 }

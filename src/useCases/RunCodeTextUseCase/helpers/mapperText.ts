@@ -1,7 +1,6 @@
 export class MapperText {
   static executeMapper(text: string): string {
-    const lowerCaseText = text.toLowerCase();
-    const mappedText = this.mapperConsole(lowerCaseText);
+    const mappedText = this.mapperConsole(text);
     const finalText = this.mapperUpperCaseWords(mappedText);
     return finalText;
   }
@@ -13,14 +12,12 @@ export class MapperText {
 
     let result = text.replace(rgxReplace, 'console.');
     result = result.replace(rgxLog, 'log');
-    result = result.replace(/end| end /gi, '} ');
     result = result.replace(rgxReplaceLower, 'console.log');
     return result;
   }
 
   private static mapperUpperCaseWords(text: string): string {
-    const rgxReplace = /var /gi;
-    const result = text.replace(rgxReplace, 'var ');
-    return result;
+    const rgxNativeWords = /\b(console\.log|var|let|const|function|if|else|for|while|switch|case|default|break|continue|return|new|typeof|instanceof)\b/gi;
+    return text.replace(rgxNativeWords, (match) => match.toLowerCase());
   }
 }
