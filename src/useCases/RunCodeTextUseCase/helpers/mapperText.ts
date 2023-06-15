@@ -17,7 +17,8 @@ export class MapperText {
   }
 
   private static mapperUpperCaseWords(text: string): string {
-    const rgxNativeWords = /\b(console\.log|var|let|const|function|if|else|for|while|switch|case|default|break|continue|return|new|typeof|instanceof)\b/gi;
+    const rgxNativeWords =
+      /\b(console\.log|var|let|const|function|if|else|for|while|switch|case|default|break|continue|return|new|typeof|instanceof)\b/gi;
     return text.replace(rgxNativeWords, (match) => match.toLowerCase());
   }
 }

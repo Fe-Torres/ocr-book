@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ReadImgUseCase } from '../../../../useCases/readImgUseCase/readImgUseCase';
 
 export class ReadImgController {
-  constructor(private readImgUseCase: ReadImgUseCase) { }
+  constructor(private readImgUseCase: ReadImgUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
     try {
