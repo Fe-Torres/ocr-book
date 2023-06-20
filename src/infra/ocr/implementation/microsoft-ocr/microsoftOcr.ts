@@ -1,13 +1,24 @@
 import { IOcr } from '../../interfaces/ocrInterface';
-import { computerVision } from './helpers/computerVision';
+import ComputerVisionService from './helpers/computerVision';
 
 export class MicrosoftOcr implements IOcr {
-  async readImage(imageBuffer: Buffer) {
+  private computerVisionService: ComputerVisionService;
+
+  constructor() {
+    this.computerVisionService = new ComputerVisionService();
+  }
+
+  async readImage(imageBuffer: Buffer): Promise<string> {
     try {
-      const result = await computerVision(imageBuffer);
-      return result;
+      const resultText = await this.computerVisionService.readTextFromImage(
+        imageBuffer
+      );
+      return resultText;
     } catch (error) {
-      throw new Error(error.body.error.message);
+      const errorMessage =
+        error?.body?.error?.message ||
+        'An error occurred during OCR processing.';
+      throw new Error(errorMessage);
     }
   }
 }
