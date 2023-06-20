@@ -1,51 +1,70 @@
-import 'dotenv/config';
 import { ComputerVisionClient } from '@azure/cognitiveservices-computervision';
+import {
+  ReadInStreamResponse,
+  ReadOperationResult
+} from '@azure/cognitiveservices-computervision/esm/models';
 import { ApiKeyCredentials } from '@azure/ms-rest-js';
 
-export async function computerVision(imageBuffer: Buffer) {
-  const key = process.env.OCR_KEY;
-  const endpoint = process.env.OCR_ENDPOINT;
+class ComputerVisionService {
+  private computerVisionClient: ComputerVisionClient;
 
-  const computerVisionClient = new ComputerVisionClient(
-    new ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': key } }),
-    endpoint
-  );
+  constructor() {
+    const key: string | undefined = process.env.OCR_KEY;
+    const endpoint: string | undefined = process.env.OCR_ENDPOINT;
 
-  const printedResult = await readTextfromImg(
-    computerVisionClient,
-    imageBuffer
-  );
+    if (!key || !endpoint) {
+      throw new Error(
+        'Missing OCR_KEY or OCR_ENDPOINT in the environment variables.'
+      );
+    }
 
-  const textParsed = parserText(printedResult);
-
-  return textParsed;
-}
-
-async function readTextfromImg(client, url) {
-  let result = await client.readInStream(url);
-  const operation = result.operationLocation.split('/').slice(-1)[0];
-
-  while (result.status !== 'succeeded') {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    result = await client.getReadResult(operation);
+    const credentials = new ApiKeyCredentials({
+      inHeader: { 'Ocp-Apim-Subscription-Key': key }
+    });
+    this.computerVisionClient = new ComputerVisionClient(credentials, endpoint);
   }
 
-  return result.analyzeResult.readResults;
-}
+  public async readTextFromImage(imageBuffer: Buffer): Promise<string> {
+    const printedResult: ReadOperationResult = await this.readText(imageBuffer);
+    const textParsed = this.parseText(printedResult);
+    return textParsed;
+  }
 
-function parserText(readResults) {
-  let text_result = '';
-  for (const page in readResults) {
-    const result = readResults[page];
-    if (result.lines.length) {
-      for (const line of result.lines) {
-        const phrase = line.words.map((w) => w.text).join(' ');
-        text_result = text_result + ' ' + phrase;
-      }
-    } else {
+  private async readText(imageBuffer: Buffer): Promise<ReadOperationResult> {
+    let resultReadInStream: ReadInStreamResponse =
+      await this.computerVisionClient.readInStream(imageBuffer);
+    const operation: string = resultReadInStream.operationLocation
+      .split('/')
+      .slice(-1)[0];
+
+    let imageResponse: ReadOperationResult;
+    do {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      imageResponse = await this.computerVisionClient.getReadResult(operation);
+    } while (imageResponse.status !== 'succeeded');
+
+    return imageResponse;
+  }
+
+  private parseText(result: ReadOperationResult): string {
+    const readResults = result.analyzeResult?.readResults;
+    if (!readResults || readResults.length === 0) {
       throw new Error('No recognized text.');
     }
-  }
 
-  return text_result;
+    let textResult = '';
+    for (const page of readResults) {
+      if (page.lines && page.lines.length) {
+        for (const line of page.lines) {
+          const phrase: string =
+            line.words?.map((word) => word.text).join(' ') ?? '';
+          textResult += ' ' + phrase;
+        }
+      }
+    }
+
+    return textResult.trim();
+  }
 }
+
+export default ComputerVisionService;
