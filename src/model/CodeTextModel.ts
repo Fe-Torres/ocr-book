@@ -7,6 +7,7 @@ export class CodeTextModel {
 
   async createFile(fileName: string): Promise<void> {
     if (this.isPotentiallyMaliciousCode(this.text)) {
+      // [ ] Implementar log
       throw new Error(
         'Potentially malicious code detected. File creation aborted.'
       );
