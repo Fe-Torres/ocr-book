@@ -7,7 +7,7 @@ export class CodeTextModel {
     this.text = text;
   }
 
-  async createFile (fileName: string): Promise<void> {
+  async createFile(fileName: string): Promise<void> {
     if (this.isPotentiallyMaliciousCode(this.text)) {
       // [ ] Implementar log
 
@@ -23,7 +23,7 @@ export class CodeTextModel {
     }
   }
 
-  private isPotentiallyMaliciousCode (code: string): boolean {
+  private isPotentiallyMaliciousCode(code: string): boolean {
     const sanitizedCode = code.toLowerCase();
     const dangerousKeywords = [
       "eval",
@@ -33,7 +33,7 @@ export class CodeTextModel {
       "fs",
       "spawn",
       "execSync",
-      "execFile"
+      "execFile",
     ];
 
     for (const keyword of dangerousKeywords) {
@@ -49,7 +49,7 @@ export class CodeTextModel {
       /child_process\.execFile\(/,
       /fs\./,
       /spawn\(/,
-      /`(?:\$\(.*?\)|`.+?`)/
+      /`(?:\$\(.*?\)|`.+?`)/,
     ];
 
     for (const command of maliciousCommands) {

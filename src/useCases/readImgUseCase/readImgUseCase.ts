@@ -6,7 +6,7 @@ export class ReadImgUseCase {
     this.ocr = ocr;
   }
 
-  async execute (imageBase64: string): Promise<string> {
+  async execute(imageBase64: string): Promise<string> {
     const imgModel = new ImgModel(imageBase64);
 
     if (!imgModel.isValidImageFormat()) {

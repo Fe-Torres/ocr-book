@@ -1,4 +1,5 @@
 ## Padrões de Commits
+
 <tipo>[escopo opcional]: <descrição->
 
 - chore: Atualização de tarefas que não ocasionam alteração no código de produção, mas mudanças de ferramentas, mudanças de configuração e bibliotecas.
@@ -14,6 +15,7 @@
 - env: Utilizado na descrição de modificações ou adições em arquivos de configuração em processos e métodos de integração contínua (CI), como parâmetros em arquivos de configuração de containers.
 
 Exemplos:
+
 - chore: add commitlint e husky
 - chore(eslint): obrigar o uso de aspas duplas no jsx
 - refactor: refatorando a tipagem

@@ -1,7 +1,7 @@
 import { ComputerVisionClient } from "@azure/cognitiveservices-computervision";
 import {
   ReadInStreamResponse,
-  ReadOperationResult
+  ReadOperationResult,
 } from "@azure/cognitiveservices-computervision/esm/models";
 import { ApiKeyCredentials } from "@azure/ms-rest-js";
 
@@ -20,18 +20,18 @@ class ComputerVisionService {
     }
 
     const credentials = new ApiKeyCredentials({
-      inHeader: { "Ocp-Apim-Subscription-Key": key }
+      inHeader: { "Ocp-Apim-Subscription-Key": key },
     });
     this.computerVisionClient = new ComputerVisionClient(credentials, endpoint);
   }
 
-  public async readTextFromImage (imageBuffer: Buffer): Promise<string> {
+  public async readTextFromImage(imageBuffer: Buffer): Promise<string> {
     const printedResult: ReadOperationResult = await this.readText(imageBuffer);
     const textParsed = this.parseText(printedResult);
     return textParsed;
   }
 
-  private async readText (imageBuffer: Buffer): Promise<ReadOperationResult> {
+  private async readText(imageBuffer: Buffer): Promise<ReadOperationResult> {
     let resultReadInStream: ReadInStreamResponse =
       await this.computerVisionClient.readInStream(imageBuffer);
     const operation: string = resultReadInStream.operationLocation
@@ -47,7 +47,7 @@ class ComputerVisionService {
     return imageResponse;
   }
 
-  private parseText (result: ReadOperationResult): string {
+  private parseText(result: ReadOperationResult): string {
     const readResults = result.analyzeResult?.readResults;
 
     if (!readResults || readResults.length === 0) {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-export function useRead () {
+export function useRead() {
   const [imageResult, setImageResult] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isReading, setIsReading] = useState(false);
@@ -13,12 +13,12 @@ export function useRead () {
       const response = await axios.post(
         "http://localhost:3333/read-image",
         {
-          imgBase64: base64
+          imgBase64: base64,
         },
         {
           headers: {
-            "Access-Control-Allow-Origin": "*"
-          }
+            "Access-Control-Allow-Origin": "*",
+          },
         }
       );
 
@@ -33,17 +33,17 @@ export function useRead () {
     }
   }
 
-  async function interpretateImage (code: string): Promise<string | null> {
+  async function interpretateImage(code: string): Promise<string | null> {
     try {
       const response = await axios.post(
         "http://localhost:3333/run-code",
         {
-          text: code
+          text: code,
         },
         {
           headers: {
-            "Access-Control-Allow-Origin": "*"
-          }
+            "Access-Control-Allow-Origin": "*",
+          },
         }
       );
 
@@ -61,6 +61,6 @@ export function useRead () {
     setSelectedFile,
     codeResultOpen,
     setCodeResultOpen,
-    isReading
+    isReading,
   };
 }

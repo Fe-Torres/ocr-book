@@ -3,7 +3,7 @@ import { ICodeText } from "../../../../model/interfaces/codeTextDTO";
 import { RunCodeTextUseCase } from "../../../../useCases/RunCodeTextUseCase/runCodeTextUseCase";
 
 export class RunCodeTextController {
-  constructor (private interpreterTextUsecase: RunCodeTextUseCase) {
+  constructor(private interpreterTextUsecase: RunCodeTextUseCase) {
     this.interpreterTextUsecase = interpreterTextUsecase;
   }
 
@@ -18,7 +18,7 @@ export class RunCodeTextController {
       errorMessage = errorMessage.replace(/.*\.js:/, "Line: ");
 
       return response.status(400).json({
-        message: errorMessage
+        message: errorMessage,
       });
     }
   }

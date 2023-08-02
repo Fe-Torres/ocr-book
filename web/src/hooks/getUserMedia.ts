@@ -1,18 +1,18 @@
 import axios from "axios";
 import { useState } from "react";
 
-export function userMedia () {
+export function userMedia() {
   const [stream, setStream] = useState<MediaStream | null>(null);
 
-  async function getUserMedia () {
+  async function getUserMedia() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
           width: 1280,
           height: 720,
-          facingMode: { exact: "environment" }
-        }
+          facingMode: { exact: "environment" },
+        },
       });
 
       setStream(stream);
@@ -21,20 +21,23 @@ export function userMedia () {
     }
   }
 
-  async function readImage (file: any) {
-    const response = await axios.post("http://localhost:3333/read-image", {
-      imgbase64: file
-    }, {
-      headers: {
-        "Access-Control-Allow-Origin": "*"
+  async function readImage(file: any) {
+    const response = await axios.post(
+      "http://localhost:3333/read-image",
+      {
+        imgbase64: file,
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
       }
-    }
     );
 
     console.log(response.data);
   }
 
-  async function updateVideo (video: HTMLVideoElement | null) {
+  async function updateVideo(video: HTMLVideoElement | null) {
     if (video) {
       video.srcObject = stream;
       video.onloadedmetadata = () => {
@@ -44,7 +47,11 @@ export function userMedia () {
   }
 
   // eslint-disable-next-line max-len
-  async function takePicture (canvas: HTMLCanvasElement | null, video: HTMLVideoElement | null, photo: HTMLImageElement | null) {
+  async function takePicture(
+    canvas: HTMLCanvasElement | null,
+    video: HTMLVideoElement | null,
+    photo: HTMLImageElement | null
+  ) {
     if (canvas && video && photo) {
       const context = canvas.getContext("2d");
       canvas.width = 1080;
@@ -63,6 +70,6 @@ export function userMedia () {
     setStream,
     updateVideo,
     takePicture,
-    getUserMedia
+    getUserMedia,
   };
 }

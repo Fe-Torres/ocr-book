@@ -18,7 +18,7 @@ export class RunCodeTextUseCase {
     }
   }
 
-  private async createAndExecuteFile (): Promise<string> {
+  private async createAndExecuteFile(): Promise<string> {
     const fileName = `${Math.random().toString(16).slice(2)}.js`;
     const codeTextModel = new CodeTextModel(this.resultMapped);
     await codeTextModel.createFile(fileName);
@@ -27,7 +27,7 @@ export class RunCodeTextUseCase {
     return fileExecutor.executeFile(fileName);
   }
 
-  private async retryRunCode (error: string): Promise<string> {
+  private async retryRunCode(error: string): Promise<string> {
     const codeFixer = new CodeFixer(error, this.resultMapped);
     this.resultMapped = await codeFixer.fixCode();
     return this.createAndExecuteFile();

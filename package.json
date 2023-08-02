@@ -14,7 +14,7 @@
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "find-deadcode": "if (npx ts-prune -e); then echo 'No deadcode found'; else echo 'Deadcode found'; fi",
-    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "install-dep-front": "cd web && npm i"
   },
   "repository": {
@@ -59,7 +59,9 @@
   },
   "lint-staged": {
     "*.ts": [
-      "yarn lint:fix"
+      "npm run format",
+      "npm run lint:fix",
+      "git add"
     ]
   }
 }

@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
 
 type ButtonFileProps = {
-  selectedFile: File | null
-  setSelectedFile: React.Dispatch<React.SetStateAction<File | null>>
-}
+  selectedFile: File | null;
+  setSelectedFile: React.Dispatch<React.SetStateAction<File | null>>;
+};
 
-export const ButtonFile = ({ selectedFile, setSelectedFile }: ButtonFileProps) => {
+export const ButtonFile = ({
+  selectedFile,
+  setSelectedFile,
+}: ButtonFileProps) => {
   return (
     <div className="flex flex-col items-center">
       <input
@@ -13,7 +16,9 @@ export const ButtonFile = ({ selectedFile, setSelectedFile }: ButtonFileProps) =
         className="hidden"
         type="file"
         accept=".jpg,.png,.jpeg"
-        onChange={(value) => setSelectedFile(value.target.files ? value.target.files[0] : null)}
+        onChange={(value) =>
+          setSelectedFile(value.target.files ? value.target.files[0] : null)
+        }
       />
       <label
         htmlFor="file-upload"
@@ -22,8 +27,8 @@ export const ButtonFile = ({ selectedFile, setSelectedFile }: ButtonFileProps) =
         Selecionar imagem
       </label>
       <p className="mt-6 text-center">
-        {selectedFile ? selectedFile.name : 'Imagem selecionada...'}
+        {selectedFile ? selectedFile.name : "Imagem selecionada..."}
       </p>
     </div>
-  )
-}
+  );
+};

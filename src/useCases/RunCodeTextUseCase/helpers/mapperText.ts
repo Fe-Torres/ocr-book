@@ -1,11 +1,11 @@
 export class MapperText {
-  static executeMapper (text: string): string {
+  static executeMapper(text: string): string {
     const mappedText = this.mapperConsole(text);
     const finalText = this.mapperUpperCaseWords(mappedText);
     return finalText;
   }
 
-  private static mapperConsole (text: string): string {
+  private static mapperConsole(text: string): string {
     const rgxReplace = /console.\ /gi;
     const rgxLog = /log /gi;
     const rgxReplaceLower = /console.\log /gi;
@@ -16,7 +16,7 @@ export class MapperText {
     return result;
   }
 
-  private static mapperUpperCaseWords (text: string): string {
+  private static mapperUpperCaseWords(text: string): string {
     const rgxNativeWords =
       // eslint-disable-next-line max-len
       /\b(console\.log|var|let|const|function|if|else|for|while|switch|case|default|break|continue|return|new|typeof|instanceof)\b/gi;

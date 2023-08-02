@@ -1,4 +1,4 @@
-import Book from '../assets/book.png'
+import Book from "../assets/book.png";
 
 export const Logo = () => {
   return (
@@ -6,9 +6,7 @@ export const Logo = () => {
       <div className="w-3/5 flex flex-col">
         <img src={Book} />
       </div>
-      <strong>
-        CodeBookJS
-      </strong>
+      <strong>CodeBookJS</strong>
     </div>
-  )
-}
+  );
+};

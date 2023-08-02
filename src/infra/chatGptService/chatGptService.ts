@@ -1,7 +1,7 @@
 export class ChatGptService {
   constructor(
     private error: string,
-    private codeText: string,
+    private codeText: string
   ) {
     this.error = error;
     this.codeText = codeText;
@@ -19,9 +19,7 @@ export class ChatGptService {
 
     const response = {
       fixedCode:
-
-
-      "console.log(\"Fake: Esse código foi corrigido no retry pelo ChatGpt\")",
+        "console.log(\"Fake: Esse código foi corrigido no retry pelo ChatGpt\")",
     };
 
     const fixedCode = response.fixedCode;
