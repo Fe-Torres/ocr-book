@@ -1,6 +1,6 @@
-import { ReadImgController } from '../../infra/api/controllers/readImgController/readImgController';
-import { MicrosoftOcr } from '../../infra/ocr/implementation/microsoft-ocr/microsoftOcr';
-import { ReadImgUseCase } from '../../useCases/readImgUseCase/readImgUseCase';
+import { ReadImgController } from "../../infra/api/controllers/readImgController/readImgController";
+import { MicrosoftOcr } from "../../infra/ocr/implementation/microsoft-ocr/microsoftOcr";
+import { ReadImgUseCase } from "../../useCases/readImgUseCase/readImgUseCase";
 
 export const makeReadImgController = (): ReadImgController => {
   const microsoftOcr = new MicrosoftOcr();

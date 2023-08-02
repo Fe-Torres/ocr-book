@@ -1,8 +1,9 @@
-import axios from 'axios'
-import { useState } from 'react'
+import axios from "axios";
+import { useState } from "react";
 
 export function userMedia () {
-  const [stream, setStream] = useState<MediaStream | null>(null)
+  const [stream, setStream] = useState<MediaStream | null>(null);
+
   async function getUserMedia () {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -10,49 +11,50 @@ export function userMedia () {
         video: {
           width: 1280,
           height: 720,
-          facingMode: { exact: 'environment' }
+          facingMode: { exact: "environment" }
         }
-      })
+      });
 
-      setStream(stream)
+      setStream(stream);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   async function readImage (file: any) {
-    const response = await axios.post('http://localhost:3333/read-image', {
+    const response = await axios.post("http://localhost:3333/read-image", {
       imgbase64: file
     }, {
       headers: {
-        'Access-Control-Allow-Origin': '*'
+        "Access-Control-Allow-Origin": "*"
       }
     }
-    )
+    );
 
-    console.log(response.data)
+    console.log(response.data);
   }
 
   async function updateVideo (video: HTMLVideoElement | null) {
     if (video) {
-      video.srcObject = stream
+      video.srcObject = stream;
       video.onloadedmetadata = () => {
-        video.play()
-      }
+        video.play();
+      };
     }
   }
 
+  // eslint-disable-next-line max-len
   async function takePicture (canvas: HTMLCanvasElement | null, video: HTMLVideoElement | null, photo: HTMLImageElement | null) {
     if (canvas && video && photo) {
-      const context = canvas.getContext('2d')
-      canvas.width = 1080
-      canvas.height = 720
-      context?.drawImage(video, 0, 0, 1080, 720)
+      const context = canvas.getContext("2d");
+      canvas.width = 1080;
+      canvas.height = 720;
+      context?.drawImage(video, 0, 0, 1080, 720);
 
-      const data = canvas.toDataURL('image/jpg')
-      photo.setAttribute('src', data)
+      const data = canvas.toDataURL("image/jpg");
+      photo.setAttribute("src", data);
 
-      readImage(data)
+      readImage(data);
     }
   }
 
@@ -62,5 +64,5 @@ export function userMedia () {
     updateVideo,
     takePicture,
     getUserMedia
-  }
+  };
 }

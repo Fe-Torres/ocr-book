@@ -1,15 +1,18 @@
-import { promises as fsPromises } from 'fs';
+import { promises as fsPromises } from "fs";
 
 const { writeFile } = fsPromises;
 
 export class CodeTextModel {
-  constructor(private text: string) {}
+  constructor(private text: string) {
+    this.text = text;
+  }
 
-  async createFile(fileName: string): Promise<void> {
+  async createFile (fileName: string): Promise<void> {
     if (this.isPotentiallyMaliciousCode(this.text)) {
       // [ ] Implementar log
+
       throw new Error(
-        'Potentially malicious code detected. File creation aborted.'
+        "Potentially malicious code detected. File creation aborted."
       );
     }
 
@@ -20,17 +23,17 @@ export class CodeTextModel {
     }
   }
 
-  private isPotentiallyMaliciousCode(code: string): boolean {
+  private isPotentiallyMaliciousCode (code: string): boolean {
     const sanitizedCode = code.toLowerCase();
     const dangerousKeywords = [
-      'eval',
-      'exec',
-      'require',
-      'child_process',
-      'fs',
-      'spawn',
-      'execSync',
-      'execFile'
+      "eval",
+      "exec",
+      "require",
+      "child_process",
+      "fs",
+      "spawn",
+      "execSync",
+      "execFile"
     ];
 
     for (const keyword of dangerousKeywords) {

@@ -1,10 +1,10 @@
-import { IOcr } from '../../interfaces/ocrInterface';
-import ComputerVisionService from './helpers/computerVision';
+import { IOcr } from "../../interfaces/ocrInterface";
+import ComputerVisionService from "./helpers/computerVision";
 
 export class MicrosoftOcr implements IOcr {
   private computerVisionService: ComputerVisionService;
 
-  constructor() {
+  constructor () {
     this.computerVisionService = new ComputerVisionService();
   }
 
@@ -17,7 +17,7 @@ export class MicrosoftOcr implements IOcr {
     } catch (error) {
       const errorMessage =
         error?.body?.error?.message ||
-        'An error occurred during OCR processing.';
+        "An error occurred during OCR processing.";
       throw new Error(errorMessage);
     }
   }

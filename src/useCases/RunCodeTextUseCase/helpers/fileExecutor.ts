@@ -1,12 +1,12 @@
-import { exec } from 'child_process';
-import { promises as fsPromises } from 'fs';
-import { promisify } from 'util';
+import { exec } from "child_process";
+import { promises as fsPromises } from "fs";
+import { promisify } from "util";
 
 const { unlink } = fsPromises;
 const asyncExec = promisify(exec);
 
 export class FileExecutor {
-  async executeFile(fileName: string): Promise<string> {
+  async executeFile (fileName: string): Promise<string> {
     const prettyCommand = `js-beautify -r ${fileName}`;
     const executeCommand = `node ${fileName}`;
 
@@ -22,7 +22,7 @@ export class FileExecutor {
     }
   }
 
-  private async executeCommand(
+  private async executeCommand (
     command: string
   ): Promise<{ stdout: string; stderr: string }> {
     try {
@@ -33,7 +33,7 @@ export class FileExecutor {
     }
   }
 
-  private async removeFile(fileName: string): Promise<void> {
+  private async removeFile (fileName: string): Promise<void> {
     try {
       await unlink(fileName);
     } catch (error) {
