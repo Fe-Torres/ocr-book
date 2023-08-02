@@ -1,5 +1,10 @@
 export class ChatGptService {
-  constructor(private error: string, private codeText: string) {
+  constructor(
+    private error: string,
+    private codeText: string
+  ) {
+    this.error = error;
+    this.codeText = codeText;
     // Inicialização da classe ChatGptService
   }
 
@@ -11,8 +16,10 @@ export class ChatGptService {
 
   private async getFixedCodeFromChatGpt(): Promise<string> {
     // Suponha que a resposta do ChatGptService seja um objeto com a propriedade "fixedCode"
+
     const response = {
-      fixedCode: `console.log("Fake: Esse código foi corrigido no retry pelo ChatGpt")`
+      fixedCode:
+        "console.log(\"Fake: Esse código foi corrigido no retry pelo ChatGpt\")",
     };
 
     const fixedCode = response.fixedCode;

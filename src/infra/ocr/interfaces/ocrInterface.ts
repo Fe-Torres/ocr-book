@@ -1,3 +1,3 @@
 export interface IOcr {
-  readImage(imageBuffer: Buffer): Promise<string>;
+  readImage(_imageBuffer: Buffer): Promise<string>;
 }

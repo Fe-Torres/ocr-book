@@ -1,8 +1,8 @@
-import { FileExecutor } from './helpers/fileExecutor';
-import { ICodeText } from '../../model/interfaces/codeTextDTO';
-import { MapperText } from './helpers/mapperText';
-import { CodeTextModel } from '../../model/CodeTextModel';
-import { CodeFixer } from './helpers/codeFixer';
+import { FileExecutor } from "./helpers/fileExecutor";
+import { ICodeText } from "../../model/interfaces/codeTextDTO";
+import { MapperText } from "./helpers/mapperText";
+import { CodeTextModel } from "../../model/CodeTextModel";
+import { CodeFixer } from "./helpers/codeFixer";
 
 export class RunCodeTextUseCase {
   private resultMapped: string;

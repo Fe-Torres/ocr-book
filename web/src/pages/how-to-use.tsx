@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../components/button';
+import { useNavigate } from "react-router-dom";
+import { Button } from "../components/button";
 
 export default function HowToUse() {
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   return (
     <div className="flex items-center flex-col w-full h-full">
       <h1 className="text-xl mt-16">How to use CodeBookJS:</h1>

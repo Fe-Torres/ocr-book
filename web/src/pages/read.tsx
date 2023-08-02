@@ -1,10 +1,10 @@
-import { DragDrop } from '../components/drag-drop';
-import { Logo } from '../components/logo';
-import { ButtonFile } from '../components/button-file';
-import { ImagePreview } from '../components/image-preview';
-import { useRead } from './useRead';
-import { CodeResult } from '../components/code-result';
-import { Loading } from '../components/loading';
+import { DragDrop } from "../components/drag-drop";
+import { Logo } from "../components/logo";
+import { ButtonFile } from "../components/button-file";
+import { ImagePreview } from "../components/image-preview";
+import { useRead } from "./useRead";
+import { CodeResult } from "../components/code-result";
+import { Loading } from "../components/loading";
 
 export default function Read() {
   const {
@@ -14,7 +14,7 @@ export default function Read() {
     codeResultOpen,
     setCodeResultOpen,
     setSelectedFile,
-    isReading
+    isReading,
   } = useRead();
 
   const renderDragAndDrop = () => {

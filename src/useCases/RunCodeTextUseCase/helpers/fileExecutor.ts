@@ -1,6 +1,6 @@
-import { exec } from 'child_process';
-import { promises as fsPromises } from 'fs';
-import { promisify } from 'util';
+import { exec } from "child_process";
+import { promises as fsPromises } from "fs";
+import { promisify } from "util";
 
 const { unlink } = fsPromises;
 const asyncExec = promisify(exec);

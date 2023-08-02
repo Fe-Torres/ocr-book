@@ -1,7 +1,7 @@
 type InputProps = {
-    name: string
-    onChange: (value: string) => void
-}
+  name: string;
+  onChange: (value: string) => void;
+};
 
 export const Input = ({ name, onChange }: InputProps) => {
   return (
@@ -13,5 +13,5 @@ export const Input = ({ name, onChange }: InputProps) => {
         placeholder={name}
       />
     </>
-  )
-}
+  );
+};
