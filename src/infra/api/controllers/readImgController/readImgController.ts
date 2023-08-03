@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ReadImgUseCase } from "../../../../useCases/readImgUseCase/readImgUseCase";
+import { ReadImgUseCase } from "../../../../useCases/ReadImgUseCase/readImgUseCase";
 
 export class ReadImgController {
   constructor(private readImgUseCase: ReadImgUseCase) {
