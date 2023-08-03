@@ -16,7 +16,6 @@ class ComputerVisionService {
     if (!key || !endpoint) {
       // Implementar o erro customizável
       throw new ServiceError(
-        "OCR",
         "Missing OCR_KEY or OCR_ENDPOINT in the environment variables."
       );
     }

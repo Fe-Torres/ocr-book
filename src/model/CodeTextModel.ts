@@ -10,7 +10,6 @@ export class CodeTextModel {
     if (this.isPotentiallyMaliciousCode(this.text)) {
       Logger.warn(`Potentiall malicious code: ${this.text}`);
       throw new ServiceError(
-        "CodeTextModel",
         "Potentially malicious code detected. File creation aborted."
       );
     }
