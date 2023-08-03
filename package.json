@@ -73,6 +73,9 @@
     "*.ts": [
       "npm run format",
       "npm run lint:fix"
+    ],
+    "*.json": [
+      "npm run format"
     ]
   }
 }
