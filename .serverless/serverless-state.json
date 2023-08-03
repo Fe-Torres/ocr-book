@@ -108,16 +108,27 @@
                   {
                     "Effect": "Allow",
                     "Principal": {
-                      "Service": ["lambda.amazonaws.com"]
+                      "Service": [
+                        "lambda.amazonaws.com"
+                      ]
                     },
-                    "Action": ["sts:AssumeRole"]
+                    "Action": [
+                      "sts:AssumeRole"
+                    ]
                   }
                 ]
               },
               "Policies": [
                 {
                   "PolicyName": {
-                    "Fn::Join": ["-", ["ocr-book-serverless", "dev", "lambda"]]
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "ocr-book-serverless",
+                        "dev",
+                        "lambda"
+                      ]
+                    ]
                   },
                   "PolicyDocument": {
                     "Version": "2012-10-17",
@@ -137,7 +148,9 @@
                       },
                       {
                         "Effect": "Allow",
-                        "Action": ["logs:PutLogEvents"],
+                        "Action": [
+                          "logs:PutLogEvents"
+                        ],
                         "Resource": [
                           {
                             "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/ocr-book-serverless-dev*:*:*"
@@ -171,7 +184,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/ocr-book-serverless/dev/1691034197881-2023-08-03T03:43:17.881Z/runCode.zip"
+                "S3Key": "serverless/ocr-book-serverless/dev/1691035652370-2023-08-03T04:07:32.370Z/runCode.zip"
               },
               "Handler": "src/infra/aws-lambdas/runCode/handler.main",
               "Runtime": "nodejs16.x",
@@ -188,19 +201,24 @@
                 }
               },
               "Role": {
-                "Fn::GetAtt": ["IamRoleLambdaExecution", "Arn"]
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
               }
             },
-            "DependsOn": ["RunCodeLogGroup"]
+            "DependsOn": [
+              "RunCodeLogGroup"
+            ]
           },
-          "RunCodeLambdaVersionf04TsEFtfkkbecemre1H6lOYvGzUuvGiy28ONdEM": {
+          "RunCodeLambdaVersionTtP9q9T7nuYPWEl3r5UXPNVYpCC9UynCOJaYHOmROQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "RunCodeLambdaFunction"
               },
-              "CodeSha256": "r4X2G6+KIM35AHDxmxc+/qHdtP9yLcACFeJrEumCSZs="
+              "CodeSha256": "uRKF1hHJ+bMM9UQ36ggtskzZuX1TEsBPiluPlAVSiqg="
             }
           },
           "HttpApi": {
@@ -227,7 +245,10 @@
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
-                "Fn::GetAtt": ["RunCodeLambdaFunction", "Arn"]
+                "Fn::GetAtt": [
+                  "RunCodeLambdaFunction",
+                  "Arn"
+                ]
               },
               "Action": "lambda:InvokeFunction",
               "Principal": "apigateway.amazonaws.com",
@@ -305,7 +326,7 @@
           "RunCodeLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "RunCodeLambdaVersionf04TsEFtfkkbecemre1H6lOYvGzUuvGiy28ONdEM"
+              "Ref": "RunCodeLambdaVersionTtP9q9T7nuYPWEl3r5UXPNVYpCC9UynCOJaYHOmROQ"
             },
             "Export": {
               "Name": "sls-ocr-book-serverless-dev-RunCodeLambdaFunctionQualifiedArn"
@@ -436,7 +457,9 @@
         "bundle": true,
         "minify": false,
         "sourcemap": true,
-        "exclude": ["aws-sdk"],
+        "exclude": [
+          "aws-sdk"
+        ],
         "target": "node16",
         "define": {},
         "platform": "node",
@@ -470,7 +493,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "RunCodeLambdaVersionf04TsEFtfkkbecemre1H6lOYvGzUuvGiy28ONdEM"
+        "versionLogicalId": "RunCodeLambdaVersionTtP9q9T7nuYPWEl3r5UXPNVYpCC9UynCOJaYHOmROQ"
       }
     },
     "configValidationMode": "warn",
@@ -500,7 +523,7 @@
   },
   "package": {
     "individually": true,
-    "artifactDirectoryName": "serverless/ocr-book-serverless/dev/1691034197881-2023-08-03T03:43:17.881Z",
+    "artifactDirectoryName": "serverless/ocr-book-serverless/dev/1691035652370-2023-08-03T04:07:32.370Z",
     "artifact": ""
   }
 }

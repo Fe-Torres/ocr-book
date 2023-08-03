@@ -2,22 +2,22 @@ import { exec } from "child_process";
 import { unlink, writeFile } from "fs/promises";
 import { promisify } from "util";
 import { ServiceError } from "../../../main/errors/ServiceError";
+import { IFileManager } from "../../../model/interfaces/IFileManager";
 
 const asyncExec = promisify(exec);
 
-export class FileManager {
+export class FileManager implements IFileManager {
   private fileName: string;
   private basePath: string;
 
-  constructor(private codeText: string) {
-    this.codeText = codeText;
+  constructor() {
     this.fileName = `${Math.random().toString(16).slice(2)}.js`;
     this.basePath = `/tmp/${this.fileName}`;
   }
 
-  async createFile(): Promise<void> {
+  async createFile(codeText: string): Promise<void> {
     try {
-      await writeFile(this.basePath, this.codeText);
+      await writeFile(this.basePath, codeText);
     } catch (error) {
       throw new ServiceError(`Failed to create file: ${error}`);
     }

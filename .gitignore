@@ -3,3 +3,4 @@ data
 .vscode
 coverage
 dist
+.esbuild

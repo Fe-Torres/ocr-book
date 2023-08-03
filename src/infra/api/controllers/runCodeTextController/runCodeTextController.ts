@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { ICodeText } from "../../../../model/interfaces/codeTextDTO";
 import { RunCodeTextUseCase } from "../../../../useCases/RunCodeTextUseCase/runCodeTextUseCase";
 
 export class RunCodeTextController {
@@ -9,7 +8,7 @@ export class RunCodeTextController {
 
   // TODO pós MVP - Deixar o controller agnóstico
   async handle(request: Request, response: Response): Promise<Response> {
-    const codeText: ICodeText = request.body;
+    const { codeText } = request.body;
     try {
       const result = await this.interpreterTextUsecase.execute(codeText);
       return response.status(200).json({ result });

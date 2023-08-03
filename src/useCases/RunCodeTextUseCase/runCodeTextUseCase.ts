@@ -1,10 +1,16 @@
-import { FileManager } from "./helpers/fileManager";
-import { MapperText } from "./helpers/mapperText";
 import { CodeTextModel } from "../../model/CodeTextModel";
 import { ActionLog, Logger } from "../../main/logs/Loger";
+import { IMapperText } from "../../model/interfaces/IMapperText";
+import { IFileManager } from "../../model/interfaces/IFileManager";
 
 export class RunCodeTextUseCase {
-  constructor() {}
+  constructor(
+    private mapperText: IMapperText,
+    private fileManager: IFileManager
+  ) {
+    this.mapperText = mapperText;
+    this.fileManager = fileManager;
+  }
 
   async execute(codeText: string): Promise<string> {
     Logger.processMessage(
@@ -12,11 +18,10 @@ export class RunCodeTextUseCase {
       ActionLog.INITIAL,
       codeText
     );
-    const resultMapped = MapperText.executeMapper(codeText);
+    const resultMapped = this.mapperText.executeMapper(codeText);
     const codeTextModel = new CodeTextModel(resultMapped);
-    const fileManager = new FileManager(codeTextModel.text);
-    await fileManager.createFile();
-    const codeResult = await fileManager.executeFile();
+    await this.fileManager.createFile(codeTextModel.text);
+    const codeResult = await this.fileManager.executeFile();
 
     Logger.processMessage("RunCodeTextUseCase execute method", ActionLog.END);
 
