@@ -1,35 +1,56 @@
-import { FileExecutor } from "./helpers/fileExecutor";
-import { ICodeText } from "../../model/interfaces/codeTextDTO";
-import { MapperText } from "./helpers/mapperText";
 import { CodeTextModel } from "../../model/CodeTextModel";
-import { CodeFixer } from "./helpers/codeFixer";
+import { Logger } from "../../main/logs/Loger";
+import { IMapperText } from "../../model/interfaces/IMapperText";
+import { IFileManager } from "../../model/interfaces/IFileManager";
 
 export class RunCodeTextUseCase {
-  private resultMapped: string;
+  constructor(
+    private mapperText: IMapperText,
+    private fileManager: IFileManager
+  ) {
+    this.mapperText = mapperText;
+    this.fileManager = fileManager;
+  }
 
-  async execute(codeTextData: ICodeText): Promise<string> {
+  async execute(codeText: string): Promise<string> {
     try {
-      const text = codeTextData.text;
-      this.resultMapped = MapperText.executeMapper(text);
-      const result = await this.createAndExecuteFile();
-      return result;
+      Logger.initialProcessMessage(
+        "RunCodeTextUseCase execute method",
+        codeText
+      );
+      const codeResult = await this.processCodeText(codeText);
+      Logger.endProcessMessage("RunCodeTextUseCase execute method");
+      return codeResult;
     } catch (error) {
-      return this.retryRunCode(error);
+      const codeResultRetry = await this.retryRunCode(codeText, error);
+      return codeResultRetry;
     }
   }
-
-  private async createAndExecuteFile(): Promise<string> {
-    const fileName = `${Math.random().toString(16).slice(2)}.js`;
-    const codeTextModel = new CodeTextModel(this.resultMapped);
-    await codeTextModel.createFile(fileName);
-
-    const fileExecutor = new FileExecutor();
-    return fileExecutor.executeFile(fileName);
+  private async retryRunCode(
+    codeWithError: string,
+    _error: any
+  ): Promise<string> {
+    // const fixedCode = this.codeFixer(codeWithError, error)
+    Logger.initialProcessMessage("retryRunCode method", {
+      codeWithError,
+      errorMessage: _error?.message,
+    });
+    // Logger.info(`Fix code: ${fixedCode}`);
+    const codeResultRetry = await this.processCodeText(codeWithError);
+    Logger.endProcessMessage("retryRunCode method", {
+      codeWithError,
+      errorMessage: _error?.message,
+    });
+    return codeResultRetry;
   }
 
-  private async retryRunCode(error: string): Promise<string> {
-    const codeFixer = new CodeFixer(error, this.resultMapped);
-    this.resultMapped = await codeFixer.fixCode();
-    return this.createAndExecuteFile();
+  private async processCodeText(codeText: string): Promise<string> {
+    Logger.initialProcessMessage("processMessage method", { codeText });
+    const resultMapped = this.mapperText.executeMapper(codeText);
+    const codeTextModel = new CodeTextModel(resultMapped);
+    await this.fileManager.createFile(codeTextModel.text);
+    const codeResult = await this.fileManager.executeFile();
+    Logger.endProcessMessage("processMessage method", { codeResult });
+    return codeResult;
   }
 }

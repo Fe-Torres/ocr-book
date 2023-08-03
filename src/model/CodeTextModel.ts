@@ -1,25 +1,17 @@
-import { promises as fsPromises } from "fs";
-
-const { writeFile } = fsPromises;
+import { ServiceError } from "../main/errors/ServiceError";
+import { Logger } from "../main/logs/Loger";
 
 export class CodeTextModel {
-  constructor(private text: string) {
+  text: string;
+
+  constructor(text: string) {
     this.text = text;
-  }
 
-  async createFile(fileName: string): Promise<void> {
     if (this.isPotentiallyMaliciousCode(this.text)) {
-      // [ ] Implementar log
-
-      throw new Error(
+      Logger.warn(`Potentiall malicious code: ${this.text}`);
+      throw new ServiceError(
         "Potentially malicious code detected. File creation aborted."
       );
-    }
-
-    try {
-      await writeFile(fileName, this.text);
-    } catch (error) {
-      throw new Error(`Failed to create file: ${error}`);
     }
   }
 

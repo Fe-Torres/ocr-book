@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { makeReadImgController } from "../../../main/factories/readImg";
-import { makeRunCodeTextController } from "../../../main/factories/runCode";
+import { makeReadImgController } from "../../../main/factories/controllers-legacy/readImgController";
+import { makeRunCodeTextController } from "../../../main/factories/controllers-legacy/runcCodeController";
 
 const routes = Router();
 

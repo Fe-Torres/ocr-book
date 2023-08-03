@@ -1,3 +1,4 @@
+import { ServiceError } from "../../../../main/errors/ServiceError";
 import { IOcr } from "../../interfaces/ocrInterface";
 import ComputerVisionService from "./helpers/computerVision";
 
@@ -18,7 +19,7 @@ export class MicrosoftOcr implements IOcr {
       const errorMessage =
         error?.body?.error?.message ||
         "An error occurred during OCR processing.";
-      throw new Error(errorMessage);
+      throw new ServiceError(errorMessage);
     }
   }
 }

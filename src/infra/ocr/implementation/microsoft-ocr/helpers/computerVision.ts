@@ -4,6 +4,7 @@ import {
   ReadOperationResult,
 } from "@azure/cognitiveservices-computervision/esm/models";
 import { ApiKeyCredentials } from "@azure/ms-rest-js";
+import { ServiceError } from "../../../../../main/errors/ServiceError";
 
 class ComputerVisionService {
   private computerVisionClient: ComputerVisionClient;
@@ -14,7 +15,7 @@ class ComputerVisionService {
 
     if (!key || !endpoint) {
       // Implementar o erro customizável
-      throw new Error(
+      throw new ServiceError(
         "Missing OCR_KEY or OCR_ENDPOINT in the environment variables."
       );
     }
@@ -51,7 +52,7 @@ class ComputerVisionService {
     const readResults = result.analyzeResult?.readResults;
 
     if (!readResults || readResults.length === 0) {
-      throw new Error("No recognized text.");
+      throw new ServiceError("No recognized text.");
     }
 
     let textResult = "";

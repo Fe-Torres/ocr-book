@@ -1,11 +1,16 @@
-export class MapperText {
-  static executeMapper(text: string): string {
+import { Logger } from "../../../main/logs/Loger";
+import { IMapperText } from "../../../model/interfaces/IMapperText";
+
+export class MapperText implements IMapperText {
+  executeMapper(text: string): string {
+    Logger.initialProcessMessage("executeMapper method", { initialText: text });
     const mappedText = this.mapperConsole(text);
     const finalText = this.mapperUpperCaseWords(mappedText);
+    Logger.endProcessMessage("executeMapper method", { finalText });
     return finalText;
   }
 
-  private static mapperConsole(text: string): string {
+  private mapperConsole(text: string): string {
     const rgxReplace = /console.\ /gi;
     const rgxLog = /log /gi;
     const rgxReplaceLower = /console.\log /gi;
@@ -16,7 +21,7 @@ export class MapperText {
     return result;
   }
 
-  private static mapperUpperCaseWords(text: string): string {
+  private mapperUpperCaseWords(text: string): string {
     const rgxNativeWords =
       // eslint-disable-next-line max-len
       /\b(console\.log|var|let|const|function|if|else|for|while|switch|case|default|break|continue|return|new|typeof|instanceof)\b/gi;
