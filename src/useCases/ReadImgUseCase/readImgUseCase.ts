@@ -1,4 +1,5 @@
 import { IOcr } from "../../infra/ocr/interfaces/ocrInterface";
+import { ServiceError } from "../../main/errors/ServiceError";
 import { Logger } from "../../main/logs/Loger";
 import { ImgModel } from "../../model/ImgModel";
 
@@ -12,7 +13,7 @@ export class ReadImgUseCase {
     const imgModel = new ImgModel(imageBase64);
 
     if (!imgModel.isValidImageFormat()) {
-      throw new Error("Invalid image format.");
+      throw new ServiceError("Invalid image format.");
     }
 
     const text = await this.ocr.readImage(imgModel.getImageBuffer());

@@ -1,3 +1,6 @@
+import { ServiceError } from "../main/errors/ServiceError";
+import { Logger } from "../main/logs/Loger";
+
 export class CodeTextModel {
   text: string;
 
@@ -5,9 +8,9 @@ export class CodeTextModel {
     this.text = text;
 
     if (this.isPotentiallyMaliciousCode(this.text)) {
-      // [ ] Implementar log
-
-      throw new Error(
+      Logger.warn(`Potentiall malicious code: ${this.text}`);
+      throw new ServiceError(
+        "CodeTextModel",
         "Potentially malicious code detected. File creation aborted."
       );
     }

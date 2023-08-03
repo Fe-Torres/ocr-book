@@ -2,8 +2,8 @@ import { BaseApplicationError } from "./baseApplicationError";
 
 export class BadRequestApplicationError extends BaseApplicationError {
   constructor(
-    public readonly entity: string,
-    message?: string
+    message: string,
+    public readonly entity?: string
   ) {
     super(message || `${entity} bad request`, 400);
     this.name = "BadRequestApplicationError";
