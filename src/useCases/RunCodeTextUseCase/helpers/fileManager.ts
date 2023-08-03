@@ -3,6 +3,7 @@ import { unlink, writeFile } from "fs/promises";
 import { promisify } from "util";
 import { ServiceError } from "../../../main/errors/ServiceError";
 import { IFileManager } from "../../../model/interfaces/IFileManager";
+import { js_beautify } from "js-beautify";
 
 const asyncExec = promisify(exec);
 
@@ -17,22 +18,21 @@ export class FileManager implements IFileManager {
 
   async createFile(codeText: string): Promise<void> {
     try {
-      await writeFile(this.basePath, codeText);
+      const codeTextParsed = js_beautify(codeText);
+      await writeFile(this.basePath, codeTextParsed);
     } catch (error) {
       throw new ServiceError(`Failed to create file: ${error}`);
     }
   }
   async executeFile(): Promise<string> {
-    // const prettyCommand = `js-beautify -r ${fileName}`;
     const executeCommand = `node ${this.basePath}`;
 
     try {
-      // await this.executeCommand(prettyCommand);
       const result = await this.executeCommand(executeCommand);
-      // await this.removeFile();
+      await this.removeFile();
       return result.stdout;
     } catch (error) {
-      // await this.removeFile();
+      await this.removeFile();
       throw new ServiceError(`Failed to execute file: ${error}`);
     }
   }
