@@ -21,7 +21,15 @@ export class Logger {
     console.error(`[${this.getTimestamp()}] [ERROR] ${message}`);
   }
 
-  static processMessage(
+  static initialProcessMessage(processName: string, data?: unknown) {
+    this.processMessage(processName, ActionLog.INITIAL, data);
+  }
+
+  static endProcessMessage(processName: string, data?: unknown) {
+    this.processMessage(processName, ActionLog.END, data);
+  }
+
+  private static processMessage(
     processName: string,
     action: ActionLog,
     data?: unknown
@@ -39,7 +47,7 @@ export class Logger {
   }
 }
 
-export enum ActionLog {
+enum ActionLog {
   INITIAL = "Initial",
   END = "End",
 }

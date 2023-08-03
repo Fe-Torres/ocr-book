@@ -1,5 +1,5 @@
 import type { AWS } from "@serverless/typescript";
-import { runCode } from "./src/infra/aws-lambdas/runCode";
+import { runCode, readImgBase64 } from "./src/infra/aws-lambdas";
 
 // Validar a transformação de uma env
 const providerRegion = "us-east-1";
@@ -27,6 +27,7 @@ const serverlessConfiguration: AWS = {
   // import the function via paths
   functions: {
     runCode,
+    readImgBase64,
   },
   package: { individually: true },
   custom: {

@@ -1,14 +1,12 @@
-import { ActionLog, Logger } from "../../../main/logs/Loger";
+import { Logger } from "../../../main/logs/Loger";
 import { IMapperText } from "../../../model/interfaces/IMapperText";
 
 export class MapperText implements IMapperText {
   executeMapper(text: string): string {
-    Logger.processMessage("executeMapper method", ActionLog.INITIAL, {
-      initialText: text,
-    });
+    Logger.initialProcessMessage("executeMapper method", { initialText: text });
     const mappedText = this.mapperConsole(text);
     const finalText = this.mapperUpperCaseWords(mappedText);
-    Logger.processMessage("executeMapper method", ActionLog.END, { finalText });
+    Logger.endProcessMessage("executeMapper method", { finalText });
     return finalText;
   }
 

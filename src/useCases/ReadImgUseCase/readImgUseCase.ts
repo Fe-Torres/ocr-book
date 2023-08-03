@@ -1,4 +1,5 @@
 import { IOcr } from "../../infra/ocr/interfaces/ocrInterface";
+import { Logger } from "../../main/logs/Loger";
 import { ImgModel } from "../../model/ImgModel";
 
 export class ReadImgUseCase {
@@ -7,6 +8,7 @@ export class ReadImgUseCase {
   }
 
   async execute(imageBase64: string): Promise<string> {
+    Logger.initialProcessMessage("ReadImgUseCase");
     const imgModel = new ImgModel(imageBase64);
 
     if (!imgModel.isValidImageFormat()) {
@@ -14,6 +16,8 @@ export class ReadImgUseCase {
     }
 
     const text = await this.ocr.readImage(imgModel.getImageBuffer());
+    Logger.endProcessMessage("ReadImgUseCase");
+
     return text;
   }
 }

@@ -6,17 +6,17 @@ import { Logger } from "../../../main/logs/Loger";
 import { StatusCode, StatusMessage } from "../helper/enum";
 import { JoiValidator } from "../helper/joiValidation";
 import schema from "./schema";
-import { makeRunCodeUsecase } from "../../../main/factories/runCode";
+import { makeReadImgUsecase } from "../../../main/factories/readImg";
 
-const runCode = async (event): Promise<APIGatewayProxyResult> => {
+const readImgBase64 = async (event): Promise<APIGatewayProxyResult> => {
   try {
-    Logger.initialProcessMessage("RunCodeFunction", event.body);
+    Logger.initialProcessMessage("ReadImgBase64 function");
     JoiValidator.validate(event.body, schema);
 
-    const { codeText } = event.body;
-    const runCodeUsecase = makeRunCodeUsecase();
-    const codeResult = await runCodeUsecase.execute(codeText);
-    Logger.endProcessMessage("RunCodeFunction", codeText);
+    const { imgBase64 } = event.body;
+    const readImgUseCase = makeReadImgUsecase();
+    const codeResult = await readImgUseCase.execute(imgBase64);
+    Logger.endProcessMessage("ReadImgBase64 function");
 
     return formatJSONResponse(
       {
@@ -30,4 +30,4 @@ const runCode = async (event): Promise<APIGatewayProxyResult> => {
   }
 };
 
-export const main = middyfy(runCode);
+export const main = middyfy(readImgBase64);

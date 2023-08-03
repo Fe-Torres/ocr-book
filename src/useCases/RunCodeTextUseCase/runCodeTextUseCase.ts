@@ -1,5 +1,5 @@
 import { CodeTextModel } from "../../model/CodeTextModel";
-import { ActionLog, Logger } from "../../main/logs/Loger";
+import { Logger } from "../../main/logs/Loger";
 import { IMapperText } from "../../model/interfaces/IMapperText";
 import { IFileManager } from "../../model/interfaces/IFileManager";
 
@@ -14,13 +14,12 @@ export class RunCodeTextUseCase {
 
   async execute(codeText: string): Promise<string> {
     try {
-      Logger.processMessage(
+      Logger.initialProcessMessage(
         "RunCodeTextUseCase execute method",
-        ActionLog.INITIAL,
         codeText
       );
       const codeResult = await this.processCodeText(codeText);
-      Logger.processMessage("RunCodeTextUseCase execute method", ActionLog.END);
+      Logger.endProcessMessage("RunCodeTextUseCase execute method");
       return codeResult;
     } catch (error) {
       const codeResultRetry = await this.retryRunCode(codeText, error);
@@ -32,13 +31,13 @@ export class RunCodeTextUseCase {
     _error: any
   ): Promise<string> {
     // const fixedCode = this.codeFixer(codeWithError, error)
-    Logger.processMessage("retryRunCode method", ActionLog.INITIAL, {
+    Logger.initialProcessMessage("retryRunCode method", {
       codeWithError,
       errorMessage: _error?.message,
     });
     // Logger.info(`Fix code: ${fixedCode}`);
     const codeResultRetry = await this.processCodeText(codeWithError);
-    Logger.processMessage("retryRunCode method", ActionLog.INITIAL, {
+    Logger.endProcessMessage("retryRunCode method", {
       codeWithError,
       errorMessage: _error?.message,
     });
@@ -46,16 +45,12 @@ export class RunCodeTextUseCase {
   }
 
   private async processCodeText(codeText: string): Promise<string> {
-    Logger.processMessage("processMessage method", ActionLog.INITIAL, {
-      codeText,
-    });
+    Logger.initialProcessMessage("processMessage method", { codeText });
     const resultMapped = this.mapperText.executeMapper(codeText);
     const codeTextModel = new CodeTextModel(resultMapped);
     await this.fileManager.createFile(codeTextModel.text);
     const codeResult = await this.fileManager.executeFile();
-    Logger.processMessage("processMessage method", ActionLog.END, {
-      codeResult,
-    });
+    Logger.endProcessMessage("processMessage method", { codeResult });
     return codeResult;
   }
 }
