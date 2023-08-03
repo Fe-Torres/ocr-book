@@ -1,7 +1,13 @@
+import { ActionLog, Logger } from "../../../main/logs/Loger";
+
 export class MapperText {
   static executeMapper(text: string): string {
+    Logger.processMessage("executeMapper method", ActionLog.INITIAL, {
+      initialText: text,
+    });
     const mappedText = this.mapperConsole(text);
     const finalText = this.mapperUpperCaseWords(mappedText);
+    Logger.processMessage("executeMapper method", ActionLog.END, { finalText });
     return finalText;
   }
 

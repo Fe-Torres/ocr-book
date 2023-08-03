@@ -1,35 +1,32 @@
-import { FileExecutor } from "./helpers/fileExecutor";
-import { ICodeText } from "../../model/interfaces/codeTextDTO";
+import { FileManager } from "./helpers/fileManager";
 import { MapperText } from "./helpers/mapperText";
 import { CodeTextModel } from "../../model/CodeTextModel";
-import { CodeFixer } from "./helpers/codeFixer";
+import { ActionLog, Logger } from "../../main/logs/Loger";
 
 export class RunCodeTextUseCase {
-  private resultMapped: string;
+  constructor() {}
 
-  async execute(codeTextData: ICodeText): Promise<string> {
-    try {
-      const text = codeTextData.text;
-      this.resultMapped = MapperText.executeMapper(text);
-      const result = await this.createAndExecuteFile();
-      return result;
-    } catch (error) {
-      return this.retryRunCode(error);
-    }
+  async execute(codeText: string): Promise<string> {
+    Logger.processMessage(
+      "RunCodeTextUseCase execute method",
+      ActionLog.INITIAL,
+      codeText
+    );
+    const resultMapped = MapperText.executeMapper(codeText);
+    const codeTextModel = new CodeTextModel(resultMapped);
+    const fileManager = new FileManager(codeTextModel.text);
+    await fileManager.createFile();
+    const codeResult = await fileManager.executeFile();
+
+    Logger.processMessage("RunCodeTextUseCase execute method", ActionLog.END);
+
+    return codeResult;
   }
 
-  private async createAndExecuteFile(): Promise<string> {
-    const fileName = `${Math.random().toString(16).slice(2)}.js`;
-    const codeTextModel = new CodeTextModel(this.resultMapped);
-    await codeTextModel.createFile(fileName);
-
-    const fileExecutor = new FileExecutor();
-    return fileExecutor.executeFile(fileName);
-  }
-
-  private async retryRunCode(error: string): Promise<string> {
-    const codeFixer = new CodeFixer(error, this.resultMapped);
-    this.resultMapped = await codeFixer.fixCode();
-    return this.createAndExecuteFile();
-  }
+  // private async retryRunCode(error: string): Promise<string> {
+  //   const codeFixer = new CodeFixer(error, this.resultMapped);
+  //   this.resultMapped = await codeFixer.fixCode();
+  //   await this.createFile();
+  //   return;
+  // }
 }
