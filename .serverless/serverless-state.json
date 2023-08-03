@@ -108,27 +108,16 @@
                   {
                     "Effect": "Allow",
                     "Principal": {
-                      "Service": [
-                        "lambda.amazonaws.com"
-                      ]
+                      "Service": ["lambda.amazonaws.com"]
                     },
-                    "Action": [
-                      "sts:AssumeRole"
-                    ]
+                    "Action": ["sts:AssumeRole"]
                   }
                 ]
               },
               "Policies": [
                 {
                   "PolicyName": {
-                    "Fn::Join": [
-                      "-",
-                      [
-                        "ocr-book-serverless",
-                        "dev",
-                        "lambda"
-                      ]
-                    ]
+                    "Fn::Join": ["-", ["ocr-book-serverless", "dev", "lambda"]]
                   },
                   "PolicyDocument": {
                     "Version": "2012-10-17",
@@ -148,9 +137,7 @@
                       },
                       {
                         "Effect": "Allow",
-                        "Action": [
-                          "logs:PutLogEvents"
-                        ],
+                        "Action": ["logs:PutLogEvents"],
                         "Resource": [
                           {
                             "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/ocr-book-serverless-dev*:*:*"
@@ -201,15 +188,10 @@
                 }
               },
               "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["IamRoleLambdaExecution", "Arn"]
               }
             },
-            "DependsOn": [
-              "RunCodeLogGroup"
-            ]
+            "DependsOn": ["RunCodeLogGroup"]
           },
           "RunCodeLambdaVersionTtP9q9T7nuYPWEl3r5UXPNVYpCC9UynCOJaYHOmROQ": {
             "Type": "AWS::Lambda::Version",
@@ -245,10 +227,7 @@
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
-                "Fn::GetAtt": [
-                  "RunCodeLambdaFunction",
-                  "Arn"
-                ]
+                "Fn::GetAtt": ["RunCodeLambdaFunction", "Arn"]
               },
               "Action": "lambda:InvokeFunction",
               "Principal": "apigateway.amazonaws.com",
@@ -457,9 +436,7 @@
         "bundle": true,
         "minify": false,
         "sourcemap": true,
-        "exclude": [
-          "aws-sdk"
-        ],
+        "exclude": ["aws-sdk"],
         "target": "node16",
         "define": {},
         "platform": "node",
