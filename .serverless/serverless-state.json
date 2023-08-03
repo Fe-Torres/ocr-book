@@ -171,7 +171,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/ocr-book-serverless/dev/1691035652370-2023-08-03T04:07:32.370Z/runCode.zip"
+                "S3Key": "serverless/ocr-book-serverless/dev/1691037445964-2023-08-03T04:37:25.964Z/runCode.zip"
               },
               "Handler": "src/infra/aws-lambdas/runCode/handler.main",
               "Runtime": "nodejs16.x",
@@ -193,14 +193,14 @@
             },
             "DependsOn": ["RunCodeLogGroup"]
           },
-          "RunCodeLambdaVersionTtP9q9T7nuYPWEl3r5UXPNVYpCC9UynCOJaYHOmROQ": {
+          "RunCodeLambdaVersion4EfjIw446mRsiypeJu47rqhNCAoWPPgactavk11qLpk": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "RunCodeLambdaFunction"
               },
-              "CodeSha256": "uRKF1hHJ+bMM9UQ36ggtskzZuX1TEsBPiluPlAVSiqg="
+              "CodeSha256": "mgCQvAU/I3FILUkjA7lzO8P0qowlkSw2wc7bStpL3UY="
             }
           },
           "HttpApi": {
@@ -305,7 +305,7 @@
           "RunCodeLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "RunCodeLambdaVersionTtP9q9T7nuYPWEl3r5UXPNVYpCC9UynCOJaYHOmROQ"
+              "Ref": "RunCodeLambdaVersion4EfjIw446mRsiypeJu47rqhNCAoWPPgactavk11qLpk"
             },
             "Export": {
               "Name": "sls-ocr-book-serverless-dev-RunCodeLambdaFunctionQualifiedArn"
@@ -470,7 +470,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "RunCodeLambdaVersionTtP9q9T7nuYPWEl3r5UXPNVYpCC9UynCOJaYHOmROQ"
+        "versionLogicalId": "RunCodeLambdaVersion4EfjIw446mRsiypeJu47rqhNCAoWPPgactavk11qLpk"
       }
     },
     "configValidationMode": "warn",
@@ -500,7 +500,7 @@
   },
   "package": {
     "individually": true,
-    "artifactDirectoryName": "serverless/ocr-book-serverless/dev/1691035652370-2023-08-03T04:07:32.370Z",
+    "artifactDirectoryName": "serverless/ocr-book-serverless/dev/1691037445964-2023-08-03T04:37:25.964Z",
     "artifact": ""
   }
 }
