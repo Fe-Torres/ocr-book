@@ -4,3 +4,4 @@ data
 coverage
 dist
 .esbuild
+.env

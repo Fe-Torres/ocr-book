@@ -6,7 +6,7 @@ export const runCode = {
     {
       httpApi: {
         method: "post",
-        path: "/runCode",
+        path: "/run-code",
       },
     },
   ],

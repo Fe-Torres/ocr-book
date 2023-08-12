@@ -2,14 +2,17 @@ import { CodeTextModel } from "../../model/CodeTextModel";
 import { Logger } from "../../main/logs/Loger";
 import { IMapperText } from "../../model/interfaces/IMapperText";
 import { IFileManager } from "../../model/interfaces/IFileManager";
+import { ICodeFixer } from "../../model/interfaces/ICodeFixer";
 
 export class RunCodeTextUseCase {
   constructor(
     private mapperText: IMapperText,
-    private fileManager: IFileManager
+    private fileManager: IFileManager,
+    private codeFixer: ICodeFixer
   ) {
     this.mapperText = mapperText;
     this.fileManager = fileManager;
+    this.codeFixer = codeFixer;
   }
 
   async execute(codeText: string): Promise<string> {
@@ -22,24 +25,19 @@ export class RunCodeTextUseCase {
       Logger.endProcessMessage("RunCodeTextUseCase execute method");
       return codeResult;
     } catch (error) {
-      const codeResultRetry = await this.retryRunCode(codeText, error);
+      Logger.warn(error.message);
+      const codeResultRetry = await this.retryRunCode(codeText);
       return codeResultRetry;
     }
   }
-  private async retryRunCode(
-    codeWithError: string,
-    _error: any
-  ): Promise<string> {
-    // const fixedCode = this.codeFixer(codeWithError, error)
+  private async retryRunCode(codeWithError: string): Promise<string> {
+    const { correctedCode } = await this.codeFixer.fixCode(codeWithError);
     Logger.initialProcessMessage("retryRunCode method", {
-      codeWithError,
-      errorMessage: _error?.message,
+      correctedCode,
     });
-    // Logger.info(`Fix code: ${fixedCode}`);
-    const codeResultRetry = await this.processCodeText(codeWithError);
+    const codeResultRetry = await this.processCodeText(correctedCode);
     Logger.endProcessMessage("retryRunCode method", {
-      codeWithError,
-      errorMessage: _error?.message,
+      codeResultRetry,
     });
     return codeResultRetry;
   }
