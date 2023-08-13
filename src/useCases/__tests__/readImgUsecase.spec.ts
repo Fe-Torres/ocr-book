@@ -1,7 +1,7 @@
 import { IOcr } from "../../infra/ocr/interfaces/ocrInterface";
 import { ServiceError } from "../../main/errors/ServiceError";
 import { ReadImgUseCase } from "../ReadImgUseCase/readImgUseCase";
-import { extractedText, ocrMock } from "./mock";
+import { extractedText, ocrMock } from "./Mock/mock";
 
 const mockOcr: IOcr = {
   readImage: jest.fn().mockResolvedValue(extractedText),
