@@ -18,6 +18,7 @@ const serverlessConfiguration: AWS = {
     region: providerRegion,
     httpApi: {
       shouldStartNameWithService: true,
+      cors: true,
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
