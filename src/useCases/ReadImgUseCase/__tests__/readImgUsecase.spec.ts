@@ -1,16 +1,12 @@
-import { IOcr } from "../../infra/ocr/interfaces/ocrInterface";
-import { ServiceError } from "../../main/errors/ServiceError";
-import { ReadImgUseCase } from "../ReadImgUseCase/readImgUseCase";
-import { extractedText, ocrMock } from "./Mock/mock";
-
-const mockOcr: IOcr = {
-  readImage: jest.fn().mockResolvedValue(extractedText),
-};
+import { ServiceError } from "../../../main/errors/ServiceError";
+import { ReadImgUseCase } from "../readImgUseCase";
+import { MockOcr } from "./Mock/MockOcr";
 
 describe("ReadImgUseCase", () => {
   let readImgUseCase: ReadImgUseCase;
 
   beforeEach(() => {
+    const mockOcr = new MockOcr();
     readImgUseCase = new ReadImgUseCase(mockOcr);
     jest.clearAllMocks();
   });
@@ -18,9 +14,8 @@ describe("ReadImgUseCase", () => {
   describe("execute", () => {
     it("deve retornar o texto extraído da imagem", async () => {
       const imageBase64 = "data:image/jpeg;base64,/9j/4AAQSkZJRg...";
-      jest.spyOn(mockOcr, "readImage").mockImplementation(ocrMock.readImage);
       const result = await readImgUseCase.execute(imageBase64);
-      expect(result).toBe(extractedText);
+      expect(result).toBe("console.log(\"Any code\")");
     });
 
     it("deve lançar um erro ServiceError para formatos de imagem inválidos", async () => {

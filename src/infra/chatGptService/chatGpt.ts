@@ -12,9 +12,8 @@ export class ChatGptService implements ICodeFixer {
   private modelId: string;
 
   constructor() {
-    console.log(process.env.OPENAI_API_KEY);
     this.configuration = new Configuration({
-      apiKey: "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",
+      apiKey: process.env.OPENAI_API_KEY,
     });
     this.modelId = "gpt-3.5-turbo";
     this.openAi = new OpenAIApi(this.configuration);
