@@ -32,10 +32,10 @@ export class RunCodeTextUseCase {
   }
   private async retryRunCode(codeWithError: string): Promise<string> {
     const { correctedCode } = await this.codeFixer.fixCode(codeWithError);
+    const codeResultRetry = await this.processCodeText(correctedCode);
     Logger.initialProcessMessage("retryRunCode method", {
       correctedCode,
     });
-    const codeResultRetry = await this.processCodeText(correctedCode);
     Logger.endProcessMessage("retryRunCode method", {
       codeResultRetry,
     });
