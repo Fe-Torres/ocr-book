@@ -19,7 +19,10 @@ export class ChatGptService implements ICodeFixer {
     this.openAi = new OpenAIApi(this.configuration);
   }
 
-  async fixCode(codeWithError: string): Promise<ICodeFixerResponse> {
+  async fixCode(
+    codeWithError: string,
+    errorMessage: string
+  ): Promise<ICodeFixerResponse> {
     try {
       Logger.initialProcessMessage("ChatGpt - Fix code");
       const prompt = this.buildPrompt(codeWithError);
@@ -33,13 +36,18 @@ export class ChatGptService implements ICodeFixer {
 
       return { correctedCode };
     } catch (err) {
-      throw new ServiceError(err.message);
+      Logger.warn(err.message);
+      throw new ServiceError(
+        `Erro mesmo após tentar o retry - Erro de compilação do código: ${errorMessage}`
+      );
     }
   }
   private buildPrompt(codeText: string): string {
+    // Tornar esse prompt mais dinâmico, estou vendo um acoplamento ao PT-BR
     return `Fala Chatinho Gepetê, recebi um erro ao executar um arquivo javascript com esse código:
       Código: ${codeText}.
       Realize a correção e me retorne somente o código javascript corrigido.
-      Observação: Não escreva nada além do código corrigido.`;
+      Caso não seja javascript apenas retorne essa frase: "Como é amigo? Isso é Javascript?"
+      Observação: Não escreva nada além do código corrigido ou da frase "Como é amigo? Isso é Javascript?".`;
   }
 }

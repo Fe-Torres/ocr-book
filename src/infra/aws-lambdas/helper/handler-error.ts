@@ -14,6 +14,9 @@ export const handleErrorResponse = (
     );
   }
 
+  // Retornar erros genericos ou a mensagem de erro propriamente dita??
+  // Penso em retornar a mensagem de erro pois as vezes pode ser o erro no código que foi enviado
+  // Será interessante o usuário ter acesso a esse erro para entender onde está o problema na sintaxe
   Logger.error(error.message);
   return formatJSONResponse(
     { message: StatusMessage.INTERNAL_SERVER_ERROR },

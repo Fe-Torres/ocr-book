@@ -26,20 +26,30 @@ export class RunCodeTextUseCase {
       return codeResult;
     } catch (error) {
       Logger.warn(error.message);
-      const codeResultRetry = await this.retryRunCode(codeText);
+      const codeResultRetry = await this.retryRunCode(codeText, error.message);
       return codeResultRetry;
     }
   }
-  private async retryRunCode(codeWithError: string): Promise<string> {
-    const { correctedCode } = await this.codeFixer.fixCode(codeWithError);
-    const codeResultRetry = await this.processCodeText(correctedCode);
-    Logger.initialProcessMessage("retryRunCode method", {
-      correctedCode,
-    });
-    Logger.endProcessMessage("retryRunCode method", {
-      codeResultRetry,
-    });
-    return codeResultRetry;
+  private async retryRunCode(
+    codeWithError: string,
+    errorMessage: string
+  ): Promise<string> {
+    try {
+      const { correctedCode } = await this.codeFixer.fixCode(
+        codeWithError,
+        errorMessage
+      );
+      const codeResultRetry = await this.processCodeText(correctedCode);
+      Logger.initialProcessMessage("retryRunCode method", {
+        correctedCode,
+      });
+      Logger.endProcessMessage("retryRunCode method", {
+        codeResultRetry,
+      });
+      return codeResultRetry;
+    } catch (error) {
+      return error.message;
+    }
   }
 
   private async processCodeText(codeText: string): Promise<string> {

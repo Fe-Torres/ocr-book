@@ -4,6 +4,9 @@ export const formatJSONResponse = (
 ) => {
   return {
     statusCode,
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(response),
   };
 };

@@ -3,5 +3,8 @@ export interface ICodeFixerResponse {
 }
 
 export interface ICodeFixer {
-  fixCode(_codeWithError: string): Promise<ICodeFixerResponse>;
+  fixCode(
+    _codeWithError: string,
+    _errorMessage: string
+  ): Promise<ICodeFixerResponse>;
 }

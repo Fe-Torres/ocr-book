@@ -9,13 +9,13 @@
 [x] Definir a estrutura do teste para passar para a galera;
 Backend OK!
 [x] Montar a apresentação do trabalho e apresentar para os caras na sexta!
-[ ] Corrigir fluxos no frontend;
+[x] Corrigir fluxos no frontend;
 
-[ ] Fazer o deploy do backend utilizando github com S3 da AWS ou azure;
-[ ] Fazer o deploy do front utilizando github com S3 da AWS ou azure;
-[ ] Testar integração;
-[ ] Preparar a apresentação com os itens que Davi mencionou;
-[ ] Cortar a imagem tirada com o Cell - https://levelup.gitconnected.com/image-crop-using-react-js-37e10208c572
+[x] Fazer o deploy do backend utilizando github com S3 da AWS ou azure;
+[x] Fazer o deploy do front utilizando github com S3 da AWS ou azure;
+[x] Testar integração;
+[x] Preparar a apresentação com os itens que Davi mencionou;
+[] Cortar a imagem tirada com o Cell - https://levelup.gitconnected.com/image-crop-using-react-js-37e10208c572
 [ ] Não deixar executar comandos no container usando o javascript no caderno.
 [ ] Melhorar a qualidade da imagem
 
