@@ -18,6 +18,12 @@ const serverlessConfiguration: AWS = {
     region: providerRegion,
     httpApi: {
       shouldStartNameWithService: true,
+      cors: {
+        allowedOrigins: [
+          "https://ocr-book.vercel.app/",
+          "https://ocr-book.vercel.app",
+        ],
+      },
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
