@@ -15,7 +15,7 @@ export class ChatGptService implements ICodeFixer {
     this.configuration = new Configuration({
       apiKey: process.env.OPENAI_API_KEY,
     });
-    this.modelId = "gpt-3.5-turbo";
+    this.modelId = "gpt-4";
     this.openAi = new OpenAIApi(this.configuration);
   }
 
@@ -36,7 +36,7 @@ export class ChatGptService implements ICodeFixer {
 
       return { correctedCode };
     } catch (err) {
-      Logger.warn(err.message);
+      Logger.warn(`ChatGpt Api Error: ${err.message}`);
       throw new ServiceError(
         `Erro mesmo após tentar o retry - Erro de compilação do código: ${errorMessage}`
       );
@@ -47,7 +47,6 @@ export class ChatGptService implements ICodeFixer {
     return `Fala Chatinho Gepetê, recebi um erro ao executar um arquivo javascript com esse código:
       Código: ${codeText}.
       Realize a correção e me retorne somente o código javascript corrigido.
-      Caso não seja javascript apenas retorne essa frase: "Como é amigo? Isso é Javascript?"
-      Observação: Não escreva nada além do código corrigido ou da frase "Como é amigo? Isso é Javascript?".`;
+      Observação: Não escreva nada além do código corrigido.`;
   }
 }

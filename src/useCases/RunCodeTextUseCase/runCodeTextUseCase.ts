@@ -25,7 +25,6 @@ export class RunCodeTextUseCase {
       Logger.endProcessMessage("RunCodeTextUseCase execute method");
       return codeResult;
     } catch (error) {
-      Logger.warn(error.message);
       const codeResultRetry = await this.retryRunCode(codeText, error.message);
       return codeResultRetry;
     }
@@ -39,6 +38,7 @@ export class RunCodeTextUseCase {
         codeWithError,
         errorMessage
       );
+      Logger.info(`CorrectedCode ${correctedCode}`);
       const codeResultRetry = await this.processCodeText(correctedCode);
       Logger.initialProcessMessage("retryRunCode method", {
         correctedCode,

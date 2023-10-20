@@ -20,8 +20,8 @@ const serverlessConfiguration: AWS = {
       shouldStartNameWithService: true,
       cors: {
         allowedOrigins: [
-          "https://ocr-book.vercel.app/",
-          "https://ocr-book.vercel.app",
+          "https://ocrbook.vercel.app/",
+          "https://ocrbook.vercel.app",
         ],
       },
     },
