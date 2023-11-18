@@ -58,7 +58,7 @@ Por favor, siga o [Código de conduta](docs/CódigoDeConduta.md) desse projeto.
 
 Ocr-Book é licenciado sob a Licença Creative Commons Attribution-NonCommercial 4.0 International. Isso significa que você tem a liberdade de usar, modificar e compartilhar este projeto, desde que o faça para fins não comerciais e atribua devidamente o crédito ao autor original.
 
-Leia atentamente os termos da [licença](LICENSE) para entender as condições detalhadas de uso. Se você tiver dúvidas ou precisar de permissões adicionais, entre em contato com o autor.
+Leia atentamente os termos da [licença](https://creativecommons.org/licenses/by-nc/4.0/legalcode.en) para entender as condições detalhadas de uso. Se você tiver dúvidas ou precisar de permissões adicionais, entre em contato com o autor.
 
 ## Propósito Não Comercial
 
