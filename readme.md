@@ -37,14 +37,7 @@ Inicie o servidor
 ```bash
   npm run dev
 ```
-
-Link do repositório do Front: link
-
-## Stack utilizada
-
-**Front-end:**
-
-**Back-end:**
+[Link do repositório do Front](https://github.com/Fe-Torres/ocr-book-front/tree/main)
 
 ## Colaboradores
 
